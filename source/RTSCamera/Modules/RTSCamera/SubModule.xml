@@ -6,11 +6,11 @@
   <SingleplayerModule value="true"/>
   <MultiplayerModule value="false"/>
   <DependedModules>
-    <DependedModule Id="Native" DependentVersion="v1.2.5" />
-    <DependedModule Id="SandBoxCore" DependentVersion="v1.2.5" />
-    <DependedModule Id="Sandbox" DependentVersion="v1.2.5" />
-    <DependedModule Id="CustomBattle" DependentVersion="v1.2.5"/>
-    <DependedModule Id="StoryMode" DependentVersion="v1.2.5" />
+    <DependedModule Id="Native" DependentVersion="v1.2.8" />
+    <DependedModule Id="SandBoxCore" DependentVersion="v1.2.8" />
+    <DependedModule Id="Sandbox" DependentVersion="v1.2.8" />
+    <DependedModule Id="CustomBattle" DependentVersion="v1.2.8"/>
+    <DependedModule Id="StoryMode" DependentVersion="v1.2.8" />
     <DependedModule Id="Bannerlord.UIExtenderEx" DependentVersion="v2.8.0" />
   </DependedModules>
   <SubModules>

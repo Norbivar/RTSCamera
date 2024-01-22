@@ -245,7 +245,7 @@ namespace RTSCamera.Logic.SubLogic
                     {
                         affectedAgent.OnMainAgentWieldedItemChange = null;
                         bool shouldSmoothToAgent = Utility.BeforeSetMainAgent();
-                        Mission.MainAgent = null;
+                        _controlTroopLogic.SetMainAgent();
 
                         // Set smooth move again if controls another agent instantly.
                         // Otherwise MissionScreen will reset camera elevate and bearing.

@@ -193,6 +193,7 @@ namespace RTSCamera.CommandSystem.Logic.SubLogic
         {
             if (!HighlightEnabledForAsTargetFormation || movementOrderTypes.FindIndex(o => o == orderType) == -1)
                 return;
+
             if (!_allySelectedFormations.Intersect(appliedFormations).IsEmpty())
             {
                 ClearEnemyFocusContour();
