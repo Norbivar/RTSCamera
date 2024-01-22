@@ -42,7 +42,8 @@
   <string id="str_rts_camera_all_invulnerable_hint" text="{=RTSCamera_disable_death_hint}All units will not die, for making video." />
   <string id="str_rts_camera_switch_team_hint" text="{=RTSCamera_switch_team_hint}Swap player's team, for making video." />
   <string id="str_rts_camera_more_visible_move_location_hint" text="Replaces the flags (that signal individual unit positions in a move order) with more visible green spheres. NOTE: needs a game restart to properly toggle on and off." />
-
+  <string id="str_rts_camera_fix_companion_formation_hint" text="{=RTSCamera_fix_companion_formation_hint}Fix the issue that companions are always assigned to infantry formation." />
+	
   <string id="str_rts_camera_create_default_config" text="{=RTSCamera_createdefaultconfig}Create default config" />
   <string id="str_rts_camera_found_old_config" text="{=RTSCamera_foundoldconfig}Found old config file:" />
   <string id="str_rts_camera_delete_old_config" text="{=RTSCamera_deleteoldconfig}Delete the old config file." />
@@ -117,7 +118,8 @@
   <string id="str_rts_camera_highlight_own_selected_formation" text="{=RTSCamera_highlight_own_selected_formation}Highlight Own Selected Formation" />
   <string id="str_rts_camera_highlight_enemy_target_formation" text="{=RTSCamera_highlight_enemy_target_formation}Highlight Enemy Target Formation" />
   <string id="str_rts_camera_more_visible_move_location" text="{=RTSCamera_more_visible_move_location}More Visible Move Location" />
-
+  <string id="str_rts_camera_fix_companion_formation" text="{=RTSCamera_fix_companion_formation}Fix Companion Formation" />
+	
   <string id="str_key_category_name.RTSCameraHotKey" text="{=RTSCamera_hotkeycategory}RTSCamera Hot Key" />
   <string id="str_key_name.RTSCameraHotKey_Up" text="{=RTSCamera_pausekey}Pause" />
   <string id="str_key_name.RTSCameraHotKey_Down" text="{=RTSCamera_slowmotionkey}Slow Motion" />

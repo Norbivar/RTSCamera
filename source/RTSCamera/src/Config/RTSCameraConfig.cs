@@ -124,6 +124,8 @@ namespace RTSCamera.Config
 
         public bool MoreVisibleMoveLocation = true;
 
+        public bool FixCompanionFormation = true;
+
         public static void OnMenuClosed()
         {
             Get().Serialize();
@@ -158,7 +160,8 @@ namespace RTSCamera.Config
             HighlightOwnSelectedFormation = other.HighlightOwnSelectedFormation;
             HighlightEnemyTargetFormation = other.HighlightEnemyTargetFormation;
             MoreVisibleMoveLocation = other.MoreVisibleMoveLocation;
-    }
+            FixCompanionFormation = other.FixCompanionFormation;
+        }
         [XmlIgnore]
         protected override string SaveName => Path.Combine(ConfigPath.ConfigDir, RTSCameraSubModule.ModuleId, nameof(RTSCameraConfig) + ".xml");
     }
