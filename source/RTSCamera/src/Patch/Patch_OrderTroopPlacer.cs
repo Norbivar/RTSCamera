@@ -425,8 +425,7 @@ namespace RTSCamera.Patch
                         }
                         else
                         {
-                            // TODO: 1.1.6: requires ChargeWithTarget instead of Charge, as in 1.2.x 
-                            ___PlayerOrderController.SetOrderWithFormation(OrderType.ChargeWithTarget, ____clickedFormation);
+                            ___PlayerOrderController.SetOrderWithFormation(OrderType.Charge, ____clickedFormation);
                             Utility.DisplayChargeToFormationMessage(___PlayerOrderController.SelectedFormations, ____clickedFormation);
                         }
                     }
