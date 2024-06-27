@@ -116,7 +116,7 @@
     <string id="RTSCamera_order_ui_clickable" text="Order UI Clickable" />
 	<string id="RTSCamera_highlight_own_selected_formation" text="Highlight Selected Own formation" />
 	<string id="RTSCamera_highlight_enemy_target_formation" text="Highlight Target Enemy Formation" />
-    <string id="RTSCamera_fix_companion_formation" text="Fix Companion Formation" />
+	<string id="RTSCamera_more_visible_move_location" text="More Visible Move Location" />
 
     <string id="RTSCamera_hotkeycategory" text="RTS Camera Hot Key" />
     <string id="RTSCamera_pausekey" text="Pause" />

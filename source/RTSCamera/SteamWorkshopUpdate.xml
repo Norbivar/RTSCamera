@@ -49,9 +49,8 @@ links：
 Nexusmods: https://www.nexusmods.com/mountandblade2bannerlord/mods/355
 mountandblade.com.cn: https://bbs.mountblade.com.cn/thread-2061243-1-1.html"/>
     <ChangeNotes Value="Migrated the following functionalities from CommandModule:
-    - Formation highlighting -> makes selection of formations viable through mouse movement. You can select a friendly formation that is highlighted, by using the middle mouse button.
-    - Formation charge -> you can select enemy formations the same way (if you already have a friendly selected), essentially giving the 'Charge Formation' command.
-    CommandModule should be entirely deprecated and not needed." />
+    - Formation 'Move Order' target flags are (optionally) replaced with some green mesh that feels more visible. This can be toggled on-off in the Menu, under Misc options. Requires a scene restart at the least.
+    - Fixed 1.2.5 compatiblity" />
     <!-- Insert patch notes -->
     <Tags>
       <!-- You can use the following tags: -->
@@ -62,7 +61,7 @@ mountandblade.com.cn: https://bbs.mountblade.com.cn/thread-2061243-1-1.html"/>
       <Tag Value="UI"/>
       <Tag Value="AI"/>
       <Tag Value="Singleplayer"/>
-      <Tag Value="v1.2.4" />
+      <Tag Value="v1.2.5" />
       <Tag Value="v1.2.x" />
     </Tags>
   </UpdateItem>

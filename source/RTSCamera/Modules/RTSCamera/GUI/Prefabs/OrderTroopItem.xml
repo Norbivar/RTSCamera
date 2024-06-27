@@ -1,80 +1,113 @@
-﻿<Prefab>
-	<Constants>
-		<Constant Name="Troop.Background.Width" BrushName="Order.Troop.Background" BrushLayer="Default" BrushValueType="Width" MultiplyResult="0.75"/>
-		<Constant Name="Troop.Background.Height" BrushName="Order.Troop.Background" BrushLayer="Default" BrushValueType="Height" MultiplyResult="0.75"/>
+<Prefab>
+  <Constants>
+    <Constant Name="Troop.Background.Width" BrushName="Order.Troop.Background" BrushLayer="Default" BrushValueType="Width" MultiplyResult="0.75"/>
+    <Constant Name="Troop.Background.Height" BrushName="Order.Troop.Background" BrushLayer="Default" BrushValueType="Height" MultiplyResult="0.75"/>
 
-		<Constant Name="Troop.Icon.Width" BrushName="Order.Troop.Icon" BrushLayer="Default" BrushValueType="Width" MultiplyResult="0.75"/>
-		<Constant Name="Troop.Icon.Height" BrushName="Order.Troop.Icon" BrushLayer="Default" BrushValueType="Height" MultiplyResult="0.75"/>
+    <Constant Name="Troop.Icon.Width" BrushName="Order.Troop.Icon" BrushLayer="Default" BrushValueType="Width" MultiplyResult="0.6"/>
+    <Constant Name="Troop.Icon.Height" BrushName="Order.Troop.Icon" BrushLayer="Default" BrushValueType="Height" MultiplyResult="0.6"/>
 
-		<!-- Filter Brush Constants -->
-		<Constant Name="FilterUnsetBrush"           Value="OrderOfBattle.Filter.Unset" />
-		<Constant Name="SpearBrush"                 Value="OrderOfBattle.Filter.Spear" />
-		<Constant Name="ShieldBrush"                Value="OrderOfBattle.Filter.Shield" />
-		<Constant Name="ThrownBrush"                Value="OrderOfBattle.Filter.Thrown" />
-		<Constant Name="HeavyBrush"                 Value="OrderOfBattle.Filter.Heavy" />
-	</Constants>
-	<Window>
-		<ButtonWidget Command.Click="ExecuteAction" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Troop.Background.Width" SuggestedHeight="!Troop.Background.Height">
-			<Children>
-				<OrderTroopItemBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Troop.Background.Width" SuggestedHeight="!Troop.Background.Height" RangedCardBrush="Order.Card.Background.Ranged" MeleeCardBrush="Order.Card.Background.Melee" HasAmmo="@IsAmmoAvailable" CurrentMemberCount="@CurrentMemberCount" IsSelectable="@IsSelectable" IsSelected="@IsSelected" FormationClass="@OrderOfBattleFormationClass" Brush="Order.Card.Background" MarginTop="25" SelectionFrameWidget="SelectionFrame" IsSelectionActive="@IsSelectionActive">
-					<Children>
+    <!-- Filter Brush Constants -->
+    <Constant Name="FilterUnsetBrush"           Value="OrderOfBattle.Filter.Unset" />
+    <Constant Name="SpearBrush"                 Value="OrderOfBattle.Filter.Spear" />
+    <Constant Name="ShieldBrush"                Value="OrderOfBattle.Filter.Shield" />
+    <Constant Name="ThrownBrush"                Value="OrderOfBattle.Filter.Thrown" />
+    <Constant Name="HeavyBrush"                 Value="OrderOfBattle.Filter.Heavy" />
+    <Constant Name="HighTierBrush"              Value="OrderOfBattle.Filter.HighTier" />
+    <Constant Name="LowTierBrush"               Value="OrderOfBattle.Filter.LowTier" />
 
-						<!-- Troop Type Icons and Troop Counts -->
-						<GridWidget DataSource="{ActiveFormationClasses}" Id="PrimaryColorGrid" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="50" ColumnCount="2" DefaultCellHeight="46" DefaultCellWidth="46" LayoutImp="GridLayout"  >
-							<ItemTemplate>
+  </Constants>
+  <Window>
+    <ButtonWidget Command.Click="ExecuteAction" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Troop.Background.Width" SuggestedHeight="!Troop.Background.Height">
+      <Children>
+        <OrderTroopItemBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Troop.Background.Width" SuggestedHeight="!Troop.Background.Height" RangedCardBrush="Order.Card.Background.Ranged" MeleeCardBrush="Order.Card.Background.Melee" HasAmmo="@IsAmmoAvailable" CurrentMemberCount="@CurrentMemberCount" IsSelectable="@IsSelectable" IsSelected="@IsSelected" FormationClass="@OrderOfBattleFormationClass" Brush="Order.Card.Background" MarginTop="25" SelectionFrameWidget="SelectionFrame" IsSelectionActive="@IsSelectionActive">
+          <Children>
 
-								<ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop">
-									<Children>
-										<OrderFormationClassVisualBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Troop.Icon.Width" SuggestedHeight="!Troop.Icon.Height" FormationClassValue="@FormationClassValue" Brush="Order.Troop.Icon" />
-										<TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" PositionYOffset="-5" Brush="Order.Troop.CountText" IntText="@TroopCount" />
-									</Children>
-								</ListPanel>
+            <!-- Troop Type Icons and Troop Counts -->
+			<GridWidget DataSource="{ActiveFormationClasses}" Id="PrimaryColorGrid" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" ColumnCount="2" DefaultCellHeight="56" DefaultCellWidth="46" LayoutImp="GridLayout"  >
+			  <ItemTemplate>
 
-							</ItemTemplate>
-						</GridWidget>
+				<ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop">
+				  <Children>
+					<OrderFormationClassVisualBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Troop.Icon.Width" SuggestedHeight="!Troop.Icon.Height" FormationClassValue="@FormationClassValue" Brush="Order.Troop.Icon" />
+					<TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" PositionYOffset="-5" Brush="Order.Troop.CountText" IntText="@TroopCount" />
+				  </Children>
+				</ListPanel>
 
-						<!-- Morale -->
-						<FillBar WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="13" VerticalAlignment="Bottom" MarginLeft="16" MarginRight="16" MarginBottom="18" MaxAmount="100" CurrentAmount="@Morale" InitialAmount="@Morale" Brush="Order.Troop.MoraleFillBar" IsVisible="false"/>
+			  </ItemTemplate>
+			</GridWidget>
 
-						<!-- Troop Count -->
-						<ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="15" MarginTop="10" LayoutImp.LayoutMethod="HorizontalLeftToRight">
-							<Children>
-								<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="30" SuggestedHeight="30" VerticalAlignment="Center" Sprite="General\Icons\Morale@2x"/>
-								<TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="1" MarginTop="8" VerticalAlignment="Center" Brush="Order.Troop.CountText" Brush.FontSize="20" IntText="@Morale" IsVisible="@HaveTroops" />
-							</Children>
-						</ListPanel>
+			<!-- Morale -->
+			<FillBar WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="13" VerticalAlignment="Bottom" MarginLeft="16" MarginRight="16" MarginBottom="18" MaxAmount="100" CurrentAmount="@Morale" InitialAmount="@Morale" Brush="Order.Troop.MoraleFillBar" IsVisible="false"/>
 
-						<!-- Shortcut Info -->
-						<Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" MarginTop="5" PositionXOffset="15" IsVisible="@HaveTroops">
-							<Children>
-								<InputKeyVisualWidget DataSource="{SelectionKey}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="60" SuggestedHeight="60" KeyID="@KeyID"/>
-							</Children>
-						</Widget>
+			<!-- Morale Status-->
+			<ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="0" MarginTop="10" StackLayout.LayoutMethod="HorizontalLeftToRight" HorizontalAlignment="Center">
+			  <Children>
+				<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="30" SuggestedHeight="30" VerticalAlignment="Center" Sprite="General\Icons\Morale@2x"/>
+				<TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="1" MarginTop="8" VerticalAlignment="Center" Brush="Order.Troop.CountText" Brush.FontSize="20" IntText="@Morale" IsVisible="@HaveTroops" />
+			  </Children>
+			</ListPanel>
 
-						<!-- Ammo Percentage -->
-						<SliderWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="3" SuggestedWidth="65" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="13" MarginLeft="3" DoNotUpdateHandleSize="true" Filler="Filler" Handle="SliderHandle" MaxValueFloat="1" MinValueFloat="0" ValueFloat="@AmmoPercentage" AlignmentAxis="Horizontal" IsVisible="@IsAmmoAvailable">
-							<Children>
-								<Widget Id="Filler" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="3" SuggestedWidth="100" VerticalAlignment="Bottom" Sprite="BlankWhiteSquare_9" />
-								<Widget Id="SliderHandle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="2" SuggestedHeight="2" HorizontalAlignment="Left" VerticalAlignment="Center" IsVisible="false" />
-							</Children>
-						</SliderWidget>
+			<!-- Shortcut Info -->
+			<Widget  WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" MarginTop="5" PositionXOffset="15" IsVisible="@CanUseShortcuts">
+			  <Children>
+				<Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsVisible="@HaveTroops">
+				  <Children>
+					<InputKeyVisualWidget DataSource="{SelectionKey}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="60" SuggestedHeight="60" KeyID="@KeyID" IsVisible="@IsVisible"/>
+				  </Children>
+				</Widget>
+			  </Children>
+			</Widget>
 
-						<!-- Selection Frame -->
-						<Widget Id="SelectionFrame" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="leader_frame_9" Color="#FF00FFFF" IsVisible="false"/>
+			<!-- Ammo Percentage -->
+			<SliderWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="3" SuggestedWidth="65" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="13" MarginLeft="3" DoNotUpdateHandleSize="true" Filler="Filler" Handle="SliderHandle" MaxValueFloat="1" MinValueFloat="0" ValueFloat="@AmmoPercentage" AlignmentAxis="Horizontal" IsVisible="@IsAmmoAvailable">
+			  <Children>
+				<Widget Id="Filler" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="3" SuggestedWidth="100" VerticalAlignment="Bottom" Sprite="BlankWhiteSquare_9" />
+				<Widget Id="SliderHandle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="2" SuggestedHeight="2" HorizontalAlignment="Left" VerticalAlignment="Center" IsVisible="false" />
+			  </Children>
+			</SliderWidget>
 
-						<!-- Commander Visual -->
-						<ImageIdentifierWidget DoNotAcceptEvents="true" DataSource="{CommanderImageIdentifier}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="31" SuggestedHeight="22" HorizontalAlignment="Center" VerticalAlignment="Top" PositionYOffset="-20" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" />
+			<!-- Selection Frame -->
+			<Widget Id="SelectionFrame" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="leader_frame_9" Color="#FF00FFFF" IsVisible="false" />
 
-						<!-- Filters -->
-						<GridWidget DataSource="{ActiveFilters}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Bottom" MarginBottom="37" MarginLeft="17" ColumnCount="2" DefaultCellHeight="20" DefaultCellWidth="20" LayoutImp="GridLayout">
-							<ItemTemplate>
-								<OrderOfBattleFormationFilterVisualBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" Brush="OrderOfBattle.Formation.Class.Type" FormationFilter="@FilterTypeValue" UnsetBrush="!FilterUnsetBrush" SpearBrush="!SpearBrush" ShieldBrush="!ShieldBrush" ThrownBrush="!ThrownBrush" HeavyBrush="!HeavyBrush" />
-							</ItemTemplate>
-						</GridWidget>
+			<!-- Commander Visual -->
+			<ImageIdentifierWidget DoNotAcceptEvents="true" DataSource="{CommanderImageIdentifier}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="31" SuggestedHeight="22" HorizontalAlignment="Center" VerticalAlignment="Top" PositionYOffset="-20" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" />
 
-					</Children>
-				</OrderTroopItemBrushWidget>
-			</Children>
-		</ButtonWidget>
-	</Window>
+			<!-- Filters -->
+			<GridWidget DataSource="{ActiveFilters}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Bottom" MarginBottom="37" MarginLeft="17" ColumnCount="2" DefaultCellHeight="20" DefaultCellWidth="20" LayoutImp="GridLayout">
+			  <ItemTemplate>
+				<OrderOfBattleFormationFilterVisualBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" Brush="OrderOfBattle.Formation.Class.Type" FormationFilter="@FilterTypeValue" UnsetBrush="!FilterUnsetBrush" SpearBrush="!SpearBrush" ShieldBrush="!ShieldBrush" ThrownBrush="!ThrownBrush" HeavyBrush="!HeavyBrush" HighTierBrush="!HighTierBrush" LowTierBrush="!LowTierBrush" />
+			  </ItemTemplate>
+			</GridWidget>
+
+			<!-- Troop Orders -->
+			<Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" IsVisible="true" >
+			  <Children>
+				<ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="50" PositionYOffset="30" IsVisible="@HasTarget" StackLayout.LayoutMethod="HorizontalLeftToRight" >
+				  <Children>
+					<OrderItemButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="30" SuggestedHeight="30" VerticalAlignment="Center" OrderIconID="@CurrentOrderIconId" IconWidget="Icon" UpdateChildrenStates="true" SelectionVisualWidget="SelectionVisualWidget" IsEnabled="false">
+					  <Children>
+						<Widget Id="Icon" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" />
+					  </Children>
+					</OrderItemButtonWidget>
+
+					<FormationMarkerParentWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarkerType="@CurrentTargetFormationType" FormationTypeMarker="TeamTypeWidget\FormationTypeMarker" TeamType="2" TeamTypeMarker="TeamTypeWidget" >
+					  <Children>
+						<BrushWidget Id="TeamTypeWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="30" SuggestedWidth="30" Brush="FormationMarker.TeamType">
+						  <Children>
+							<Widget Id="FormationTypeMarker" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center"/>
+						  </Children>
+						</BrushWidget>
+					  </Children>
+					</FormationMarkerParentWidget>
+
+				  </Children>
+				</ListPanel>
+			  </Children>
+			</Widget>
+
+          </Children>
+        </OrderTroopItemBrushWidget>
+      </Children>
+    </ButtonWidget>
+  </Window>
 </Prefab>

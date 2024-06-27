@@ -35,12 +35,12 @@ namespace RTSCamera
             OrderType.FallBack
         };
 
-        private readonly uint _allySelectedColor = new Color(0.5f, 1.0f, 0.5f).ToUnsignedInteger();
-        private readonly uint _allyTargetColor = new Color(0.3f, 0.3f, 1.0f).ToUnsignedInteger();
+        private readonly uint _allySelectedColor = new Color(0.2f, 1.0f, 0.2f).ToUnsignedInteger();
+        private readonly uint _allyTargetColor = new Color(0.3f, 0.3f, 1.0f).ToUnsignedInteger(); // maybe unused -> we cannot "target" allies?
         private readonly uint _mouseOverAllyColor = new Color(0.3f, 1.0f, 1.0f).ToUnsignedInteger();
-        private readonly uint _enemySelectedColor = new Color(0.98f, 0.4f, 0.5f).ToUnsignedInteger();
-        private readonly uint _enemyTargetColor = new Color(1f, 0.2f, 0.2f).ToUnsignedInteger();
-        private readonly uint _mouseOverEnemyColor = new Color(0.98f, 0.6f, 0.5f).ToUnsignedInteger();
+        private readonly uint _enemySelectedColor = new Color(1.0f, 0.5f, 0.5f).ToUnsignedInteger(); // maybe unused -> we cannot "select" enemeis?
+        private readonly uint _enemyTargetColor = new Color(1.0f, 0.2f, 0.2f).ToUnsignedInteger();
+        private readonly uint _mouseOverEnemyColor = new Color(0.8f, 0.6f, 0.6f).ToUnsignedInteger();
         private readonly List<Formation> _enemyAsTargetFormations = new List<Formation>();
         private readonly List<Formation> _allyAsTargetFormations = new List<Formation>();
         private readonly List<Formation> _allySelectedFormations = new List<Formation>();
@@ -122,10 +122,6 @@ namespace RTSCamera
             team.OnOrderIssued += OnOrderIssued;
             team.OnFormationsChanged += OnFormationsChanged;
             team.PlayerOrderController.OnSelectedFormationsChanged += OrderController_OnSelectedFormationsChanged;
-            //foreach (var formation in team.FormationsIncludingSpecialAndEmpty)
-            //{
-            //    formation.OnUnitCountChanged += Formation_OnUnitCountChanged;
-            //}
         }
 
         public  void OnAgentBuild(Agent agent, Banner banner)
@@ -135,6 +131,7 @@ namespace RTSCamera
                 bool isEnemy = Utility.IsEnemy(agent.Formation);
                 if (agent.Formation == _mouseOverFormation)
                     SetAgentMouseOverContour(agent, isEnemy);
+
                 if (isEnemy)
                 {
                     if (_enemyAsTargetFormations.Contains(agent.Formation))
@@ -196,7 +193,7 @@ namespace RTSCamera
             }
         }
 
-        private void OnOrderIssued(OrderType orderType, IEnumerable<Formation> appliedFormations, params object[] delegateParams)
+        private void OnOrderIssued(OrderType orderType, MBReadOnlyList<Formation> appliedFormations, OrderController orderController, params object[] delegateParams)
         {
             if (!HighlightEnabledForAsTargetFormation || movementOrderTypes.FindIndex(o => o == orderType) == -1)
                 return;
@@ -220,18 +217,6 @@ namespace RTSCamera
             SetFocusContour();
             MouseOver(mouseOverFormation);
         }
-
-        //private void Formation_OnUnitCountChanged(Formation formation)
-        //{
-        //    if (!HighlightEnabled)
-        //        return;
-
-        //    var mouseOverFormation = _mouseOverFormation;
-        //    _mouseOverFormation = null;
-        //    ClearFormationAllContour(formation);
-        //    SetFocusContour();
-        //    MouseOver(mouseOverFormation);
-        //}
 
         private void OrderController_OnSelectedFormationsChanged()
         {
@@ -283,9 +268,8 @@ namespace RTSCamera
             _allySelectedFormations.Clear();
             _allySelectedFormations.AddRange(PlayerOrderController?.SelectedFormations ?? Enumerable.Empty<Formation>());
 
-
             var enemyAsTargetFormations = PlayerOrderController?.SelectedFormations
-                .Select(formation => formation.GetReadonlyMovementOrderReference().TargetFormation).Where(formation => formation != null).ToList() ?? new List<Formation>();
+                .Select(formation => formation.TargetFormation).Where(formation => formation != null).ToList() ?? new List<Formation>();
 
             foreach (var formation in enemyAsTargetFormations)
             {

@@ -171,7 +171,6 @@ namespace RTSCamera.Patch
             return false;
         }
 
-
         private static void HideNonSelectedOrderRotationEntities(OrderController ___PlayerOrderController, List<GameEntity> ____orderRotationEntities, Formation formation)
         {
             for (int index = 0; index < ____orderRotationEntities.Count; ++index)
@@ -184,7 +183,6 @@ namespace RTSCamera.Patch
                 }
             }
         }
-
 
         private static void TryTransformFromClickingToDragging(OrderTroopPlacer __instance, Vec2? ____formationDrawingStartingPointOfMouse, float? ____formationDrawingStartingTime, OrderController ___PlayerOrderController,
             ref Formation ____clickedFormation, ref bool ____formationDrawingMode, bool ____isMouseDown)
@@ -337,40 +335,42 @@ namespace RTSCamera.Patch
             ref Vec3 groundPosition, bool fadeOut, float alpha,
             List<GameEntity> ____orderPositionEntities, ref Material ____meshMaterial)
         {
-            while (____orderPositionEntities.Count <= entityIndex)
+            if (RTSCameraConfig.Get().MoreVisibleMoveLocation)
             {
-                GameEntity empty = GameEntity.CreateEmpty(__instance.Mission.Scene);
-                empty.EntityFlags |= EntityFlags.NotAffectedBySeason;
-                MetaMesh copy = MetaMesh.GetCopy("order_flag_small");
-                if (____meshMaterial == null)
+                while (____orderPositionEntities.Count <= entityIndex)
                 {
-                    ____meshMaterial = copy.GetMeshAtIndex(0).GetMaterial().CreateCopy();
-                    ____meshMaterial.SetAlphaBlendMode(Material.MBAlphaBlendMode.Factor);
+                    GameEntity gameEntity = GameEntity.CreateEmpty(__instance.Mission.Scene);
+                    gameEntity.EntityFlags |= EntityFlags.NotAffectedBySeason;
+                    MetaMesh copy = MetaMesh.GetCopy("barrier_sphere");
+                    if (____meshMaterial == null)
+                    {
+                        ____meshMaterial = copy.GetMeshAtIndex(0).GetMaterial().CreateCopy();
+                        ____meshMaterial.SetAlphaBlendMode(Material.MBAlphaBlendMode.Factor);
+                    }
+                    copy.SetMaterial(____meshMaterial);
+                    gameEntity.AddComponent(copy);
+                    gameEntity.SetVisibilityExcludeParents(false);
+                    ____orderPositionEntities.Add(gameEntity);
                 }
-                copy.SetMaterial(____meshMaterial);
-                copy.SetContourColor(new Color(0, 0.6f, 1).ToUnsignedInteger());
-                copy.SetContourState(true);
-                empty.AddComponent(copy);
-                empty.SetVisibilityExcludeParents(false);
-                ____orderPositionEntities.Add(empty);
-            }
-            GameEntity orderPositionEntity = ____orderPositionEntities[entityIndex];
-            MatrixFrame frame = new MatrixFrame(Mat3.Identity, groundPosition);
-            __instance.MissionScreen.ScreenPointToWorldRay(Vec2.One * 0.5f, out var rayBegin, out Vec3 _);
-            float rotationZ = MatrixFrame.CreateLookAt(rayBegin, groundPosition, Vec3.Up).rotation.f.RotationZ;
-            frame.rotation.RotateAboutUp(rotationZ);
-            orderPositionEntity.SetFrame(ref frame);
-            if (alpha != -1.0)
-            {
-                orderPositionEntity.SetVisibilityExcludeParents(true);
-                orderPositionEntity.SetAlpha(alpha);
-            }
-            else if (fadeOut)
-                orderPositionEntity.FadeOut(0.3f, false);
-            else
-                orderPositionEntity.FadeIn();
+                GameEntity orderPositionEntity = ____orderPositionEntities[entityIndex];
+                MatrixFrame frame = new MatrixFrame(Mat3.Identity, groundPosition + (Vec3.Up * 1.0f));
+                orderPositionEntity.SetFrame(ref frame);
+                if (alpha != -1.0)
+                {
+                    orderPositionEntity.SetVisibilityExcludeParents(true);
+                    orderPositionEntity.SetAlpha(alpha);
+                }
+                else if (fadeOut)
+                    orderPositionEntity.FadeOut(0.5f, false);
+                else
+                    orderPositionEntity.FadeIn();
 
-            return false;
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private static void HandleSelectFormationKeyDown(OrderTroopPlacer __instance, ref Formation ____clickedFormation, ref Formation ____mouseOverFormation,
@@ -461,7 +461,7 @@ namespace RTSCamera.Patch
 
             bool anyHighlight = _config.HighlightOwnSelectedFormation || _config.HighlightEnemyTargetFormation;
 
-            bool isSelectFormationKeyPressed = anyHighlight && 
+            bool isSelectFormationKeyPressed = anyHighlight &&
                                             RTSCameraGameKeyCategory.GetKey(GameKeyEnum.SelectFormation)
                                                 .IsKeyPressed(__instance.Input);
             bool isSelectFormationKeyReleased = anyHighlight &&

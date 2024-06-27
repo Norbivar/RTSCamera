@@ -57,11 +57,12 @@ namespace RTSCamera.Logic.SubLogic
 
         private bool ShouldGainSkillXp()
         {
-            return Campaign.Current != null && RTSCameraSkillBehavior.ShouldLimitCameraDistance(_logic.Mission) &&
-                _logic.Mission.Mode == MissionMode.Battle && !_logic.Mission.IsMissionEnding;
+            return Campaign.Current != null 
+                && RTSCameraSkillBehavior.ShouldLimitCameraDistance(_logic.Mission) 
+                && _logic.Mission.Mode == MissionMode.Battle && !_logic.Mission.IsMissionEnding;
         }
 
-        private void OnOrderIssued(OrderType orderType, IEnumerable<Formation> appliedFormations, object[] delegateParams)
+        private void OnOrderIssued(OrderType orderType, MBReadOnlyList<Formation> appliedFormations, OrderController orderController, params object[] delegateParams)
         {
             if (Utility.IsTeamValid(_logic.Mission.PlayerTeam) && Campaign.Current != null &&
                 (MapEvent.PlayerMapEvent == null ||

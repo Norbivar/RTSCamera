@@ -112,6 +112,7 @@ namespace RTSCamera
                 _successPatch &= Patch_MissionGauntletMainAgentEquipDropView.Patch();
                 _successPatch &= Patch_MissionGauntletMainAgentEquipmentControllerView.Patch();
                 _successPatch &= Patch_DeploymentMissionController.Patch();
+                _successPatch &= Patch_SandboxBattleSpawnModel.Patch();
                 _successPatch &= Patch_AgentHumanAILogic.Patch();
                 _successPatch &= Patch_MissionOrderDeploymentControllerVM.Patch();
                 _successPatch &= Patch_OrderTroopPlacer.Patch();

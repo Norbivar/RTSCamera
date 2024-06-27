@@ -293,6 +293,12 @@ namespace RTSCamera.Config
                     GameTexts.FindText("str_rts_camera_order_ui_clickable_hint"),
                     () => RTSCameraConfig.Get().OrderUIClickable,
                     b => RTSCameraConfig.Get().OrderUIClickable = UIConfig.DoNotUseGeneratedPrefabs = b));
+                miscellaneousOptionCategory.AddOption(new BoolOptionViewModel(
+                    GameTexts.FindText("str_rts_camera_fix_companion_formation"),
+                    GameTexts.FindText("str_rts_camera_fix_companion_formation_hint"),
+                    () => RTSCameraConfig.Get().FixCompanionFormation,
+                    b => RTSCameraConfig.Get().FixCompanionFormation = b));
+                optionClass.AddOptionCategory(1, miscellaneousOptionCategory);
 
                 miscellaneousOptionCategory.AddOption(new BoolOptionViewModel(
                     GameTexts.FindText("str_rts_camera_highlight_own_selected_formation"),
@@ -304,6 +310,12 @@ namespace RTSCamera.Config
                     GameTexts.FindText("str_rts_camera_highlight_enemy_target_formation_hint"),
                     () => RTSCameraConfig.Get().HighlightEnemyTargetFormation,
                     b => RTSCameraConfig.Get().HighlightEnemyTargetFormation = b));
+                miscellaneousOptionCategory.AddOption(new BoolOptionViewModel(
+                    GameTexts.FindText("str_rts_camera_more_visible_move_location"),
+                    GameTexts.FindText("str_rts_camera_more_visible_move_location_hint"),
+                    () => RTSCameraConfig.Get().MoreVisibleMoveLocation,
+                    b => RTSCameraConfig.Get().MoreVisibleMoveLocation = b));
+
 
                 optionClass.AddOptionCategory(1, miscellaneousOptionCategory);
                 if (NativeConfig.CheatMode)
