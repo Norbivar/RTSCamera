@@ -1,7 +1,9 @@
 ﻿using HarmonyLib;
 using MissionSharedLibrary.Utilities;
+using RTSCamera.Config;
 using System;
 using System.Reflection;
+using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 
 namespace RTSCamera.Patch

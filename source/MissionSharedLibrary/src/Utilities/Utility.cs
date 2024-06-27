@@ -1,4 +1,5 @@
 ﻿using MissionSharedLibrary.HotKey.Category;
+using RTSCamera.Config;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -336,10 +337,15 @@ namespace MissionSharedLibrary.Utilities
                         mission.MainAgent.RemoveComponent(mission.MainAgent.HumanAIComponent);
                     }
 
-                    var formation_to_put_in = mission.MainAgent.Team.GetFormation(mission.MainAgent.Character.GetFormationClass());
+                    var savedFormation = RTSCameraConfig.Get().PlayerFormation;
+                    var isSettingPlayerCharacter = (mission.MainAgent.Character.IsPlayerCharacter && savedFormation != FormationClass.Unset);
+
+                    var formationToPutIn = isSettingPlayerCharacter
+                        ? savedFormation
+                        : mission.MainAgent.Team.GetFormation(mission.MainAgent.Character.GetFormationClass()).FormationIndex;
 
                     mission.MainAgent.Controller = Agent.ControllerType.AI;
-                    SetMainAgentFormationClass(formation_to_put_in.FormationIndex);
+                    SetMainAgentFormationClass(formationToPutIn);
 
                     // the Initialize method need to be called manually.
                     mission.MainAgent.CommonAIComponent?.Initialize();
@@ -538,7 +544,7 @@ namespace MissionSharedLibrary.Utilities
                 var vec2_6 = agentToFollow.MountAgent.GetMovementDirection() * agentToFollow.MountAgent.Monster.RiderBodyCapsuleForwardAdder;
                 cameraTarget += vec2_6.ToVec3();
             }
-            
+
             cameraTarget.z += (float)CameraTargetAddedHeight.GetValue(missionScreen);
             cameraTarget += matrixFrame.rotation.f * agentScale * (0.7f * MathF.Pow(MathF.Cos((float)(1.0 / ((missionScreen.CameraResultDistanceToTarget / (double)agentScale - 0.20000000298023224) * 30.0 + 20.0))), 3500f));
             result.origin = cameraTarget + matrixFrame.rotation.u * missionScreen.CameraResultDistanceToTarget;

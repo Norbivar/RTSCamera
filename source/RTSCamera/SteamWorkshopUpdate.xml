@@ -4,7 +4,7 @@
     <!-- Can be found in the URL of your workshop item -->
   </GetItem>
   <UpdateItem>
-    <ModuleFolder Value="E:\Documents\Projects\RTSCamera\source\package\RTSCamera"/>
+    <ModuleFolder Value="G:\Documents\Projects\RTSCamera\source\package\RTSCamera"/>
     <!-- A direct path of your module -->
     <ItemDescription Value="A reupload of the RTS Camera, aimed at keeping the mod running for newer versions of Bannerlord.
 This version will be updated for the current Beta version (1.1.0.10976).
@@ -49,8 +49,8 @@ links：
 Nexusmods: https://www.nexusmods.com/mountandblade2bannerlord/mods/355
 mountandblade.com.cn: https://bbs.mountblade.com.cn/thread-2061243-1-1.html"/>
     <ChangeNotes Value="Migrated the following functionalities from CommandModule:
-    - Formation 'Move Order' target flags are (optionally) replaced with some green mesh that feels more visible. This can be toggled on-off in the Menu, under Misc options. Requires a scene restart at the least.
-    - Fixed 1.2.5 compatiblity" />
+    - Removed internal Harmony, set as dependcy otherwise
+    - 1.2.9 compatiblity" />
     <!-- Insert patch notes -->
     <Tags>
       <!-- You can use the following tags: -->
@@ -61,7 +61,7 @@ mountandblade.com.cn: https://bbs.mountblade.com.cn/thread-2061243-1-1.html"/>
       <Tag Value="UI"/>
       <Tag Value="AI"/>
       <Tag Value="Singleplayer"/>
-      <Tag Value="v1.2.5" />
+      <Tag Value="v1.2.9" />
       <Tag Value="v1.2.x" />
     </Tags>
   </UpdateItem>

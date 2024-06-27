@@ -22,8 +22,7 @@
   <string id="str_rts_camera_slow_motion_hint" text="{=RTSCamera_slow_motion_hint}When enabled, modifies the game speed by the factor you have set. This allows for either slowing down or even speeding up (above 1.0) the game speed." />
   <string id="str_rts_camera_slow_motion_factor_hint" text="{=RTSCamera_slow_motion_factor_hint}The factor of time speed." />
   <string id="str_rts_camera_player_controller_in_free_camera_hint" text="{=RTSCamera_player_controller_in_free_camera_hint}Player control mode in Free Camera. If set to none, player character will not be controlled. If set to AI, AI will control player character. If set to Player, you can still directly control your character." />
-  <string id="str_rts_camera_player_formation_hint" text="{=RTSCamera_player_formation_hint}Assign player to the selected formation." />
-  <string id="str_rts_camera_auto_set_player_formation_hint" text="{=RTSCamera_auto_set_player_formation_hint}When to automatically set player to the specified formation." />
+  <string id="str_rts_camera_player_formation_hint" text="{=RTSCamera_player_formation_hint}Assign the player character to the given formation class whenever it is unpossessed, for example: going into RTS mode, possessing teammates, etc. Works only in campaign mode and with control mode set to 'AI'." />
   <string id="str_rts_camera_watch_another_hero_hint" text="{=RTSCamera_watch_another_hero_hint}Watch the hero you selected." />
   <string id="str_rts_camera_select_character_hint" text="{=RTSCamera_select_character_hint}Select a character using mouse, then you can focus the camera to it or control it." />
   <string id="str_rts_camera_control_ally_after_death_hint" text="{=RTSCamera_control_ally_after_death_hint}Automatically control one of your ally after you die." />
@@ -77,12 +76,8 @@
   <string id="str_rts_camera_controller_type.none" text="{=RTSCamera_controller_type_none}None" />
   <string id="str_rts_camera_controller_type.AI" text="{=RTSCamera_controller_type_AI}AI" />
   <string id="str_rts_camera_controller_type.Player" text="{=RTSCamera_controller_type_player}Player" />
-  <string id="str_rts_camera_player_formation" text="{=RTSCamera_playerformation}Player Formation" />
+  <string id="str_rts_camera_player_formation" text="{=RTSCamera_playerformation}Player Character Formation" />
   <string id="str_rts_camera_player_formation_unset" text="{=RTSCamera_player_formation_unset}Unset" />
-  <string id="str_rts_camera_auto_set_player_formation" text="{=RTSCamera_auto_set_player_formation}Auto Set Player Formation" />
-  <string id="str_rts_camera_auto_set_player_formation.Never" text="{=RTSCamera_auto_set_player_formation_never}Never" />
-  <string id="str_rts_camera_auto_set_player_formation.DeploymentStage" text="{=RTSCamera_auto_set_player_formation_deployment_stage}Deployment Stage" />
-  <string id="str_rts_camera_auto_set_player_formation.Always" text="{=RTSCamera_auto_set_player_formation_always}Always" />
   <string id="str_rts_camera_watch_another_hero" text="{=RTSCamera_watchanotherhero}Watch Another Hero" />
   <string id="str_rts_camera_select_character" text="{=RTSCamera_select_character}Select Character" />
   <string id="str_rts_camera_control_ally_after_death" text="{=RTSCamera_controlallyafterdeath}Control Ally After Death" />

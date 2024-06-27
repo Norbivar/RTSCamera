@@ -183,7 +183,7 @@ namespace RTSCamera.Logic.SubLogic
                     return firstPreference.agent;
                 }
 
-                if ((int)_switchFreeCameraLogic.CurrentPlayerFormation != _config.PlayerFormation)
+                if (_switchFreeCameraLogic.CurrentPlayerFormation != _config.PlayerFormation)
                 {
                     var secondPreference = AgentPreferenceFromFormation((FormationClass)_config.PlayerFormation,
                         cameraPosition, ignoreRetreatingAgents);
@@ -204,7 +204,7 @@ namespace RTSCamera.Logic.SubLogic
                 if (firstPreference.hero != null)
                     return firstPreference.hero;
 
-                if ((int)_switchFreeCameraLogic.CurrentPlayerFormation != _config.PlayerFormation)
+                if (_switchFreeCameraLogic.CurrentPlayerFormation != _config.PlayerFormation)
                 {
                     var secondPreference =
                         AgentPreferenceFromFormation((FormationClass)_config.PlayerFormation, cameraPosition,

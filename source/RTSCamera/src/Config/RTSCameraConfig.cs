@@ -76,7 +76,7 @@ namespace RTSCamera.Config
             return (Agent.ControllerType) PlayerControllerInFreeCamera;
         }
 
-        public int PlayerFormation = (int)FormationClass.Unset;
+        public FormationClass PlayerFormation = FormationClass.General;
 
         // Use AutoSetPlayerFormation instead
         public bool AlwaysSetPlayerFormation;

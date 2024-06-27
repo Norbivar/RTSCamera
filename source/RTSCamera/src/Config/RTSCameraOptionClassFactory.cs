@@ -115,13 +115,12 @@ namespace RTSCamera.Config
                         {
                             if (i < 0 || i >= (int)Agent.ControllerType.Count)
                                 return;
+
                             RTSCameraConfig.Get().PlayerControllerInFreeCamera = i;
                             if (rtsCameraLogic.SwitchFreeCameraLogic.IsSpectatorCamera && !Utility.IsPlayerDead())
                             {
-                                Utilities.Utility.UpdateMainAgentControllerInFreeCamera(Mission.Current.MainAgent,
-                                    (Agent.ControllerType)i);
-                                Utilities.Utility.UpdateMainAgentControllerState(Mission.Current.MainAgent,
-                                    rtsCameraLogic.SwitchFreeCameraLogic.IsSpectatorCamera, (Agent.ControllerType)i);
+                                Utilities.Utility.UpdateMainAgentControllerInFreeCamera(Mission.Current.MainAgent, (Agent.ControllerType)i);
+                                Utilities.Utility.UpdateMainAgentControllerState(Mission.Current.MainAgent, rtsCameraLogic.SwitchFreeCameraLogic.IsSpectatorCamera, (Agent.ControllerType)i);
                             }
                         }, () =>
                         {
@@ -129,13 +128,17 @@ namespace RTSCamera.Config
                             {
                                 if (Mission.Current.MainAgent.Controller == Agent.ControllerType.AI)
                                     return (int)Agent.ControllerType.AI;
+
                                 var controller = Mission.Current.GetMissionBehavior<MissionMainAgentController>();
                                 if (controller == null ||
                                     !((bool?)typeof(MissionMainAgentController)
                                         .GetField("_activated", BindingFlags.Instance | BindingFlags.NonPublic)
                                         ?.GetValue(controller) ?? true) ||
                                     Mission.Current.MainAgent.Controller == Agent.ControllerType.None)
+                                {
                                     return (int)Agent.ControllerType.None;
+                                }
+
                                 return (int)Agent.ControllerType.Player;
                             }
 
@@ -153,28 +156,23 @@ namespace RTSCamera.Config
                         i =>
                         {
                             var config = RTSCameraConfig.Get();
-                            config.PlayerFormation = i;
-                            if (i >= 0 && i < (int)FormationClass.NumberOfAllFormations)
+                            if (i >= 0 && i <= (int)FormationClass.NumberOfAllFormations)
                             {
-                                rtsCameraLogic.SwitchFreeCameraLogic.CurrentPlayerFormation = (FormationClass)i;
-                                if (WatchBattleBehavior.WatchMode)
-                                    return;
+                                FormationClass formationClass = (FormationClass)i;
 
-                                Utility.SetMainAgentFormationClass((FormationClass)i);
+                                rtsCameraLogic.SwitchFreeCameraLogic.CurrentPlayerFormation = formationClass;
+                                config.PlayerFormation = formationClass;
+
+                                Agent mainAgent = Mission.Current.MainAgent;
+                                bool? isControllingOwnCharacter = mainAgent.Character?.IsPlayerCharacter;
+                                if (isControllingOwnCharacter == true)
+                                {
+                                    Utility.SetMainAgentFormationClass(formationClass);
+                                }
                             }
                         }, () =>
                         {
-                            if (Utility.IsPlayerDead())
-                            {
-                                return RTSCameraConfig.Get().PlayerFormation;
-                            }
-
-                            if (Mission.Current.MainAgent.Formation == null)
-                            {
-                                return -1;
-                            }
-
-                            return Mission.Current.MainAgent.Formation.Index;
+                            return (int) RTSCameraConfig.Get().PlayerFormation;
                         },
                         (int)FormationClass.NumberOfRegularFormations, new[]
                         {
@@ -191,38 +189,7 @@ namespace RTSCamera.Config
                             new SelectionItem(true, "str_rts_camera_player_formation_unset")
                         }), true, true);
                 controlOptionCategory.AddOption(playerFormationOption);
-                controlOptionCategory.AddOption(new SelectionOptionViewModel(
-                    GameTexts.FindText("str_rts_camera_auto_set_player_formation"),
-                    GameTexts.FindText("str_rts_camera_auto_set_player_formation_hint"),
-                    new SelectionOptionData(i =>
-                    {
-                        if (i < 0 || i >= (int)AutoSetPlayerFormation.Count)
-                        {
-                            return;
-                        }
 
-                        var config = RTSCameraConfig.Get();
-                        config.AutoSetPlayerFormation = (AutoSetPlayerFormation)i;
-                        if (config.AutoSetPlayerFormation == AutoSetPlayerFormation.Always ||
-                            config.AutoSetPlayerFormation == AutoSetPlayerFormation.DeploymentStage && rtsCameraLogic.Mission.Mode == MissionMode.Deployment)
-                        {
-                            var formationClass = (Utility.IsPlayerDead() || Mission.Current.MainAgent.Formation == null)
-                                ? config.PlayerFormation
-                                : Mission.Current.MainAgent.Formation.Index;
-                            config.PlayerFormation = formationClass;
-                            rtsCameraLogic.SwitchFreeCameraLogic.CurrentPlayerFormation = (FormationClass)formationClass;
-                            if (WatchBattleBehavior.WatchMode)
-                                return;
-                            Utility.SetMainAgentFormationClass((FormationClass)formationClass);
-                            playerFormationOption.UpdateData(false);
-                        }
-                    }, () => (int)RTSCameraConfig.Get().AutoSetPlayerFormation, (int)AutoSetPlayerFormation.Count,
-                        new[]
-                        {
-                            new SelectionItem(true, "str_rts_camera_auto_set_player_formation", "Never"),
-                            new SelectionItem(true, "str_rts_camera_auto_set_player_formation", "DeploymentStage"),
-                            new SelectionItem(true, "str_rts_camera_auto_set_player_formation", "Always")
-                        }), true));
                 controlOptionCategory.AddOption(new SelectionOptionViewModel(
                     GameTexts.FindText("str_rts_camera_watch_another_hero"),
                     GameTexts.FindText("str_rts_camera_watch_another_hero_hint"),
