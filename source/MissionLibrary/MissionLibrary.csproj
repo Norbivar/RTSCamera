@@ -1,60 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\BasicSharedLibrary\BasicSharedLibrary.projitems" Label="Shared" />
+
+  <Import Project="$(MSBuildProjectDirectory)\*.props" />
+
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
     <ProcessorArchitecture>amd64</ProcessorArchitecture>
     <LangVersion>8</LangVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-
-  <Import Project="..\BasicSharedLibrary\BasicSharedLibrary.projitems" Label="Shared" />
-
-  <Import Project="..\MissionSharedLibrary\MissionSharedLibrary.projitems" Label="Shared" />
-  <Import Project="$(MSBuildProjectDirectory)\*.props" />
-
   <ItemGroup>
-    <ProjectReference Include="..\MissionLibrary\MissionLibrary.csproj" />
-    <ProjectReference Include="..\RTSCameraAgentComponent\RTSCameraAgentComponent.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <DotNetCliToolReference Include="dotnet-md2html" Version="1.0.0.1-preview1" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>C:\Programs\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\0Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="Bannerlord.Harmony">
-      <HintPath>C:\Programs\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\Bannerlord.Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil">
-      <HintPath>C:\Programs\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\Mono.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil.Mdb">
-      <HintPath>C:\Programs\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\Mono.Cecil.Mdb.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil.Pdb">
-      <HintPath>C:\Programs\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\Mono.Cecil.Pdb.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil.Rocks">
-      <HintPath>C:\Programs\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\Mono.Cecil.Rocks.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoMod.Backports">
-      <HintPath>C:\Programs\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Backports.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoMod.Core">
-      <HintPath>C:\Programs\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoMod.Iced">
-      <HintPath>C:\Programs\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Iced.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoMod.ILHelpers">
-      <HintPath>C:\Programs\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.ILHelpers.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoMod.Utils">
-      <HintPath>C:\Programs\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Utils.dll</HintPath>
-    </Reference>
     <Reference Include="SandBox">
       <HintPath>$(GamePath)Modules\SandBox\bin\Win64_Shipping_Client\SandBox.dll</HintPath>
     </Reference>
@@ -66,9 +22,6 @@
     </Reference>
     <Reference Include="SandBox.ViewModelCollection">
       <HintPath>$(GamePath)Modules\SandBox\bin\Win64_Shipping_Client\SandBox.ViewModelCollection.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ValueTuple">
-      <HintPath>C:\Programs\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="TaleWorlds.CampaignSystem">
       <HintPath>$(GamePath)bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.dll</HintPath>
@@ -133,9 +86,6 @@
     <Reference Include="TaleWorlds.Localization">
       <HintPath>$(GamePath)bin\Win64_Shipping_Client\TaleWorlds.Localization.dll</HintPath>
     </Reference>
-    <Reference Include="TaleWorlds.ModuleManager">
-      <HintPath>$(GamePath)bin\Win64_Shipping_Client\TaleWorlds.ModuleManager.dll</HintPath>
-    </Reference>
     <Reference Include="TaleWorlds.MountAndBlade">
       <HintPath>$(GamePath)bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.dll</HintPath>
     </Reference>
@@ -166,24 +116,9 @@
     <Reference Include="TaleWorlds.ObjectSystem">
       <HintPath>$(GamePath)bin\Win64_Shipping_Client\TaleWorlds.ObjectSystem.dll</HintPath>
     </Reference>
-    <Reference Include="TaleWorlds.ScreenSystem">
-      <HintPath>$(GamePath)bin\Win64_Shipping_Client\TaleWorlds.ScreenSystem.dll</HintPath>
-    </Reference>
     <Reference Include="TaleWorlds.TwoDimension">
       <HintPath>$(GamePath)bin\Win64_Shipping_Client\TaleWorlds.TwoDimension.dll</HintPath>
     </Reference>
   </ItemGroup>
-
-  <Target Name="RemoveModulePackageDir" AfterTargets="BeforeBuild">
-    <Exec Command="rmdir &quot;$(ModulePackagePath)&quot; /s /q" />
-  </Target>
-  
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy &quot;$(TargetPath)&quot; &quot;$(ModulePackagePath)bin\Win64_Shipping_Client\&quot; /C /I /Y /F" />
-    <Exec Command="xcopy &quot;$(TargetDir)MissionLibrary.dll&quot; &quot;$(ModulePackagePath)bin\Win64_Shipping_Client\&quot; /C /I /Y /F" />
-    <Exec Command="xcopy &quot;$(TargetDir)RTSCameraAgentComponent.dll&quot; &quot;$(ModulePackagePath)bin\Win64_Shipping_Client\&quot; /C /I /Y /F" />
-    <Exec Command="xcopy &quot;$(ProjectDir)Modules\.&quot; &quot;$(PackagePath)&quot; /E /C /I /Y /F" />
-    <Exec Command="xcopy &quot;$(ModulePackagePath).&quot; &quot;$(GamePath)Modules\$(ModuleAlias) &quot; /E /C /I /Y /F" />
-  </Target>
 
 </Project>

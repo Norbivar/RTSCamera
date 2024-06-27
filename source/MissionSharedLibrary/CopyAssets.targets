@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="CopyAssets" AfterTargets="CopyFilesToOutputDirectory" Condition="$(ModulePackagePath) != ''">
+    <Exec Command="xcopy &quot;$(MSBuildThisFileDirectory)assets&quot; &quot;$(ModulePackagePath)&quot; /E /C /I /Y /F" />
+  </Target>
+</Project>

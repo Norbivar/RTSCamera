@@ -1,0 +1,26 @@
+<Brushes>
+  <Brush Name="MissionLibrary.MissionMenuBrush">
+    <Layers>
+      <BrushLayer Name="Default" Sprite="Frame1_canvas" />
+      <BrushLayer Name="Frame" ExtendTop="27" ExtendLeft="26" ExtendRight="27" ExtendBottom="29" Sprite="Frame1_frame" OverlayMethod="CoverWithTexture" OverlaySprite="stone_texture_overlay"/>
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" AlphaFactor="1"/>
+        <BrushLayer Name="Frame" AlphaFactor="1"/>
+      </Style>
+    </Styles>
+  </Brush>
+  <Brush Name="MissionLibrary.TransparentBrush">
+    <Layers>
+      <BrushLayer Name="Default" Sprite="Frame1_canvas" />
+      <BrushLayer Name="Frame" ExtendTop="27" ExtendLeft="26" ExtendRight="27" ExtendBottom="29" Sprite="Frame1_frame" OverlayMethod="CoverWithTexture" OverlaySprite="stone_texture_overlay"/>
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" AlphaFactor="0"/>
+        <BrushLayer Name="Frame" AlphaFactor="0"/>
+      </Style>
+    </Styles>
+  </Brush>
+</Brushes>

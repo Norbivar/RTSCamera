@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<strings>
+  <string id="str_mission_library_gamekey_config" text="{=MissionLibrary_config_key}Config Key" />
+  <string id="str_mission_library_config_key_hint" text="{=MissionLibrary_config_key_hint}Config hotkey." />
+  <string id="str_key_category_name.MissionLibraryGeneralGameKey" text="{=MissionLibrary_general_game_key}General Hot Key" />
+  <string id="str_key_name.MissionLibraryGeneralGameKey_Up" text="{=MissionLibrary_openmenukey}Open Menu" />
+  <string id="str_key_description.MissionLibraryGeneralGameKey_Up" text="{=MissionLibrary_openmenukey_description}Open or close menu." />
+
+</strings>

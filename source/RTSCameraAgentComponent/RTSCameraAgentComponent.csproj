@@ -9,10 +9,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
 
+  <Import Project="..\BasicSharedLibrary\BasicSharedLibrary.projitems" Label="Shared" />
   <Import Project="$(MSBuildProjectDirectory)\*.props" />
-  <Import Project="..\library\mission-library\source\BasicSharedLibrary\BasicSharedLibrary.projitems" Label="Shared" />
   <ItemGroup>
-    <ProjectReference Include="..\library\mission-library\source\MissionLibrary\MissionLibrary.csproj" />
+    <ProjectReference Include="..\MissionLibrary\MissionLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>

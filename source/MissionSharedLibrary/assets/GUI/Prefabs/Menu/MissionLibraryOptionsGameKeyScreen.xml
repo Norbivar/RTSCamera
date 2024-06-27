@@ -1,0 +1,71 @@
+<Prefab>
+  <Window>
+    <BrushWidget WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent" Brush="MissionLibrary.MissionMenuBrush">
+      <Children>
+        <Standard.Background />
+        <!-- <Widget WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent"> -->
+        <MissionLibraryGameKeyConfigWidget Id="Options" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" CurrentOptionDescriptionWidget="MainSectionListPanel\DescriptionsRightPanel\DescriptionsListPanel\CurrentOptionDescriptionWidget" CurrentOptionImageWidget="MainSectionListPanel\DescriptionsRightPanel\DescriptionsListPanel\CurrentOptionImageWidget" CurrentOptionNameWidget="MainSectionListPanel\DescriptionsRightPanel\DescriptionsListPanel\CurrentOptionNameWidget" Brush="MissionLibrary.MissionMenuBrush">
+          <Children>
+
+            <ListPanel Id="MainSectionListPanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginTop="10">
+              <Children>
+
+                <Widget Id="CenterPanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+                  <Children>
+
+                    <ScrollablePanel Id="ScrollablePanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" AutoHideScrollBarHandle="true" AutoHideScrollBars="false" ClipRect="MyClipRect" InnerPanel="MyClipRect\TabControl" VerticalScrollbar="..\..\VerticalScrollbar">
+                      <Children>
+                        <Widget Id="MyClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" ClipContents="true">
+                          <Children>
+                            <TabControl Id="TabControl" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren">
+                              <Children>
+                                <MissionLibraryOptionsGameKeyPage Id="GameKeyOptionGroupsPage" DataSource="{GameKeyOptions}" />
+                              </Children>
+                            </TabControl>
+                          </Children>
+                        </Widget>
+
+                        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="150" VerticalAlignment="Bottom" Sprite="StdAssets\Popup\scrollable_field_gradient" IsEnabled="false" />
+
+                      </Children>
+                    </ScrollablePanel>
+
+                  </Children>
+                </Widget>
+
+                <ScrollbarWidget Id="VerticalScrollbar" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="8" HorizontalAlignment="Right" VerticalAlignment="Center" MarginTop="26" MarginBottom="85" AlignmentAxis="Vertical" Handle="VerticalScrollbarHandle" MaxValue="100" MinValue="0">
+                  <Children>
+                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="4" HorizontalAlignment="Center" Sprite="MPLobby\CustomServer\lobby_slider_bed" AlphaFactor="0.4" />
+                    <ImageWidget Id="VerticalScrollbarHandle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="8" SuggestedHeight="10" HorizontalAlignment="Center" Brush="FaceGen.Scrollbar.Handle" />
+                  </Children>
+                </ScrollbarWidget>
+
+                <!--Descriptions Right Panel-->
+                <Widget Id="DescriptionsRightPanel" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="650">
+                  <Children>
+
+                    <ListPanel Id="DescriptionsListPanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginLeft="40" MarginTop="65" LayoutImp.LayoutMethod="VerticalBottomToTop">
+                      <Children>
+                        <RichTextWidget Id="CurrentOptionNameWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" Brush="SPOptions.Description.Title.Text" Text=" " />
+                        <RichTextWidget Id="CurrentOptionDescriptionWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="25" Brush="SPOptions.Description.Text" Text=" " />
+                        <Widget Id="CurrentOptionImageWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="576" SuggestedHeight="324" MarginTop="35" />
+                      </Children>
+                    </ListPanel>
+
+                  </Children>
+                </Widget>
+
+              </Children>
+            </ListPanel>
+
+            <Standard.DialogCloseButtons Parameter.CancelButtonAction="ExecuteCancel" Parameter.CancelButtonText="@CancelLbl" Parameter.DoneButtonAction="ExecuteDone" Parameter.DoneButtonText="@DoneLbl" />
+
+
+          </Children>
+        </MissionLibraryGameKeyConfigWidget>
+        <!-- </Widget> -->
+      </Children>
+    </BrushWidget>
+    
+  </Window>
+</Prefab>

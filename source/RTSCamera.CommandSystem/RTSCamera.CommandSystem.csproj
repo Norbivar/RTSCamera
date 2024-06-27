@@ -13,11 +13,8 @@
 
 
   <Import Project="$(MSBuildProjectDirectory)\*.props" />
-  <Import Project="..\library\mission-library\source\MissionSharedLibrary\MissionSharedLibrary.projitems" Label="Shared" />
-  <Import Project="..\library\mission-library\source\BasicSharedLibrary\BasicSharedLibrary.projitems" Label="Shared" />
 
   <ItemGroup>
-    <ProjectReference Include="..\library\mission-library\source\MissionLibrary\MissionLibrary.csproj" />
     <ProjectReference Include="..\RTSCameraAgentComponent\RTSCameraAgentComponent.csproj" />
   </ItemGroup>
   <ItemGroup>

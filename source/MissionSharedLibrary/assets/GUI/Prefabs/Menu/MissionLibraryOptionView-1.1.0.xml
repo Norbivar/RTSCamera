@@ -1,0 +1,130 @@
+<Prefab>
+  <Variables>
+  </Variables>
+  <VisualDefinitions>
+  </VisualDefinitions>
+  <Window>
+    <ButtonWidget Command.Click="CloseMenu" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="MissionLibrary.TransparentBrush">
+      <Children>
+
+        <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="1750" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="50" Brush="MissionLibrary.MissionMenuBrush">
+          <Children>
+
+            <ListPanel LayoutImp.LayoutMethod="VerticalBottomToTop" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren">
+              <Children>
+
+                <ListPanel LayoutImp.LayoutMethod="VerticalBottomToTop" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="750" HorizontalAlignment="Left" MarginLeft="250">
+                  <Children>
+
+                    <ButtonWidget Command.Click="ConfigKey" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" SuggestedWidth="300" HeightSizePolicy="Fixed" SuggestedHeight="50" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="ButtonBrush2" PositiveBehaviourBrush="ButtonBrush1" MarginTop="10">
+                      <Children>
+                        <TextWidget DataSource="{ConfigKeyTitle}" Text="@Text" HeightSizePolicy="CoverChildren" WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Popup.Button.Text"/>
+                        <HintWidget DataSource="{ConfigKeyHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint"/>
+                      </Children>
+                    </ButtonWidget>
+
+                  </Children>
+                </ListPanel>
+
+                <ListPanel DataSource="{OptionClassCollection}" LayoutImp.LayoutMethod="HorizontalLeftToRight" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="1750" HorizontalAlignment="Center">
+                  <Children>
+
+                    <ListPanel DataSource="{OptionClassViewModels}" LayoutImp.LayoutMethod="VerticalBottomToTop" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="250" HorizontalAlignment="Left">
+                      <ItemTemplate>
+
+                        <ButtonWidget IsSelected="@IsSelected" Command.Click="ExecuteSelection" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="250" SuggestedHeight="50" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="SaveLoad.Tuple">
+                          <Children>
+                            <TextWidget DataSource="{Name}" Text="@Text" HeightSizePolicy="CoverChildren" WidthSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Popup.Button.Text" MarginLeft="40" MarginRight="40" />
+                          </Children>
+                        </ButtonWidget>
+                      </ItemTemplate>
+                    </ListPanel>
+
+                    <Widget Id="CenterPanel" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="1500" SuggestedHeight="800">
+                      <Children>
+
+                        <ScrollablePanel Id="ScrollablePanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" AutoHideScrollBarHandle="true" AutoHideScrollBars="false" ClipRect="MyClipRect" InnerPanel="MyClipRect\InnerPannel" VerticalScrollbar="..\VerticalScrollbar">
+                          <Children>
+                            <Widget Id="MyClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" ClipContents="true">
+                              <Children>
+
+                                <ListPanel Id="InnerPannel" DataSource="{CurrentOptionClassViewModel\OptionColumns}" LayoutImp.LayoutMethod="HorizontalLeftToRight" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="1500" HorizontalAlignment="Center">
+                                  <ItemTemplate>
+
+                                    <ListPanel LayoutImp.LayoutMethod="VerticalBottomToTop" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="750" HorizontalAlignment="Left" MarginTop="10">
+                                      <Children>
+                                        <ListPanel DataSource="{Categories}" LayoutImp.LayoutMethod="VerticalBottomToTop" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="750" HorizontalAlignment="Left" MarginTop="10">
+                                          <ItemTemplate>
+
+                                            <ListPanel LayoutImp.LayoutMethod="VerticalBottomToTop" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="750" HorizontalAlignment="Left" MarginTop="10">
+                                              <Children>
+
+                                                <PartyHeaderToggleWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" SuggestedWidth="750" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="10" MarginRight="10" MarginTop="5" CollapseIndicator="Description\CollapseParent\GroupTitle\CollapseIndicator" WidgetToClose="..\ToggledListPanel" ListPanel="..\ToggledListPanel" RenderLate="true" UpdateChildrenStates="true">
+                                                  <Children>
+
+                                                    <ListPanel Id="Description" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" LayoutImp.LayoutMethod="HorizontalLeftToRight" UpdateChildrenStates="true">
+                                                      <Children>
+
+                                                        <Widget Id="CollapseParent" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" UpdateChildrenStates="true">
+                                                          <Children>
+                                                            <TextWidget DataSource="{Title}" Text="@Text" Id="GroupTitle" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" Brush="SPOptions.GameKeysGroup.Title.Text" ClipContents="false" MarginLeft="30">
+                                                              <Children>
+                                                                <ImageWidget Id="CollapseIndicator" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="19" SuggestedWidth="19" VerticalAlignment="Center" PositionXOffset="-26" PositionYOffset="-3" Brush="SPOptions.GameKeysgroup.ExpandIndicator" OverrideDefaultStateSwitchingEnabled="true" />
+                                                              </Children>
+                                                            </TextWidget>
+                                                          </Children>
+                                                        </Widget>
+
+                                                        <ImageWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="2" VerticalAlignment="Center" MarginLeft="15" Brush="SPOptions.CollapserLine" />
+                                                      </Children>
+                                                    </ListPanel>
+
+                                                  </Children>
+                                                </PartyHeaderToggleWidget>
+
+                                                <ListPanel DataSource="{OptionViewModels}" Id="ToggledListPanel" LayoutImp.LayoutMethod="VerticalBottomToTop" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                  <ItemTemplate>
+                                                    <MissionLibraryOptionItemWidget />
+                                                  </ItemTemplate>
+                                                </ListPanel>
+
+
+                                              </Children>
+                                            </ListPanel>
+
+                                          </ItemTemplate>
+                                        </ListPanel>
+                                      </Children>
+                                    </ListPanel>
+
+                                  </ItemTemplate>
+                                </ListPanel>
+
+                              </Children>
+                            </Widget>
+                            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="150" VerticalAlignment="Bottom" Sprite="StdAssets\Popup\scrollable_field_gradient" IsEnabled="false" />
+
+                          </Children>
+                        </ScrollablePanel>
+
+                        <ScrollbarWidget Id="VerticalScrollbar" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="8" HorizontalAlignment="Right" VerticalAlignment="Center" MarginTop="26" MarginBottom="85" AlignmentAxis="Vertical" Handle="VerticalScrollbarHandle" MaxValue="100" MinValue="0">
+                          <Children>
+                            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="4" HorizontalAlignment="Center" Sprite="MPLobby\CustomServer\lobby_slider_bed" AlphaFactor="0.4" />
+                            <ImageWidget Id="VerticalScrollbarHandle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="8" SuggestedHeight="10" HorizontalAlignment="Center" Brush="FaceGen.Scrollbar.Handle" />
+                          </Children>
+                        </ScrollbarWidget>
+                      </Children>
+                    </Widget>
+
+                  </Children>
+                </ListPanel>
+
+              </Children>
+            </ListPanel>
+
+          </Children>
+        </BrushWidget>
+      </Children>
+    </ButtonWidget>
+  </Window>
+</Prefab>

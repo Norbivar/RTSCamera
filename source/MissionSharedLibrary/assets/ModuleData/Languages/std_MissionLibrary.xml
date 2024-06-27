@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="English" />
+  </tags>
+  <strings>
+    <string id="MissionLibrary_config_key" text="Config Key" />
+    <string id="MissionLibrary_config_key_hint" text="Config hotkey." />
+    <string id="MissionLibrary_general_game_key" text="General Hot Key" />
+    <string id="MissionLibrary_openmenukey" text="Open Menu" />
+    <string id="MissionLibrary_openmenukey_description" text="Open or close menu." />
+  </strings>
+</base>

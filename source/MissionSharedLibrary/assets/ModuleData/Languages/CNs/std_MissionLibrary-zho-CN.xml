@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="简体中文" />
+  </tags>
+  <strings>
+    <string id="MissionLibrary_config_key" text="按键绑定" />
+    <string id="MissionLibrary_config_key_hint" text="配置快捷键。" />
+    <string id="MissionLibrary_general_game_key" text="通用按键" />
+    <string id="MissionLibrary_openmenukey" text="打开菜单" />
+    <string id="MissionLibrary_openmenukey_description" text="打开或关闭菜单" />
+  </strings>
+</base>

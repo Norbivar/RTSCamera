@@ -1,0 +1,115 @@
+<Prefab>
+  <Parameters>
+    <Parameter Name="SelectorDataSource" DefaultValue="SelectorDataSource" />
+    <Parameter Name="ShowNextAndPrevious" DefaultValue="true" />
+    <Parameter Name="IsFlatDesign" DefaultValue="false" />
+    <Parameter Name="IsCustomWidth" DefaultValue="false" />
+    <Parameter Name="CustomWidth" DefaultValue="0" />
+    <Parameter Name="IsEnabled" DefaultValue="true" />
+    <Parameter Name="DisabledHintDataSource" DefaultValue="" />
+  </Parameters>
+  <Constants>
+    <Constant Name="PreviousButtonBrush" BooleanCheck="*IsFlatDesign" OnTrue="SPOptions.Dropdown.Left.Button" OnFalse="SPOptions.Dropdown.Left.Button" />
+    <Constant Name="NextButtonBrush" BooleanCheck="*IsFlatDesign" OnTrue="SPOptions.Dropdown.Right.Button" OnFalse="SPOptions.Dropdown.Right.Button" />
+    <Constant Name="DropdownCenterBrush" BooleanCheck="*IsFlatDesign" OnTrue="MPLobby.CustomServer.CreateGamePanel.DropdownButton" OnFalse="SPOptions.Dropdown.Center" />
+    <Constant Name="DropdownListBackgroundBrush" BooleanCheck="*IsFlatDesign" OnTrue="MPLobby.CustomServer.CreateGamePanel.DropdownList" OnFalse="SPOptions.Dropdown.Extension" />
+    <Constant Name="ItemBrush" BooleanCheck="*IsFlatDesign" OnTrue="Standard.DropdownItem.Flat" OnFalse="Standard.DropdownItem" />
+
+    <Constant Name="DropdownCenterTextBrush" BooleanCheck="*IsFlatDesign" OnTrue="MPLobby.CustomServer.CreateGamePanel.DropdownText" OnFalse="SPOptions.Dropdown.Center.Text" />
+    <Constant Name="ItemTextBrush" BooleanCheck="*IsFlatDesign" OnTrue="Standard.DropdownItem.Text" OnFalse="SPOptions.Dropdown.Item.Text" />
+
+    <Constant Name="Extension.Brush.Width" BrushLayer="Default" BrushName="!DropdownListBackgroundBrush" BrushValueType="Width" />
+    <Constant Name="DropdownCenter.Brush.Width" BrushLayer="Default" BrushName="!DropdownCenterBrush" BrushValueType="Width" />
+    <Constant Name="DropdownCenter.Height" BrushLayer="Default" BrushName="!DropdownCenterBrush" BrushValueType="Height" />
+
+    <Constant Name="Extension.Width" BooleanCheck="*IsCustomWidth" OnTrue="*CustomWidth" OnFalse="!Extension.Brush.Width" />
+    <Constant Name="DropdownCenter.Width" BooleanCheck="*IsCustomWidth" OnTrue="*CustomWidth" OnFalse="!DropdownCenter.Brush.Width" />
+
+  </Constants>
+  <Variables>
+  </Variables>
+  <VisualDefinitions>
+  </VisualDefinitions>
+  <Window>
+    <!--This prefab assumes that you're using SelectorVM as the DataSource-->
+    <!--It would not work with other models-->
+    <ListPanel Id="HorizontalControlParent" DataSource="*SelectorDataSource" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren">
+      <Children>
+
+        <!--Previous Button-->
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="43" VerticalAlignment="Center" DoNotAcceptEvents="true" IsVisible="*ShowNextAndPrevious">
+          <Children>
+            <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="60" SuggestedHeight="70" VerticalAlignment="Center" HorizontalAlignment="Center" Command.Click="ExecuteSelectPreviousItem" Brush="!PreviousButtonBrush" IsEnabled="*IsEnabled"/>
+          </Children>
+        </Widget>
+
+        <!--Type Selection-->
+        <AnimatedDropdownWidget Id="DropdownParent" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="!DropdownCenter.Width" HorizontalAlignment="Center" VerticalAlignment="Center" DropdownContainerWidget="DropdownClipWidget\DropdownContainerWidget" ListPanel="DropdownClipWidget\DropdownContainerWidget\ScrollablePanel\ClipRect\PrimaryUsageSelectorList" Button="DropdownButtonContainer\DropdownButton" CurrentSelectedIndex="@SelectedIndex" TextWidget="DropdownButtonContainer\DropdownButton\SelectedTextWidget" DropdownClipWidget="DropdownClipWidget" ScrollbarWidget="DropdownClipWidget\DropdownContainerWidget\VerticalScrollbar">
+          <Children>
+            <Widget Id="DropdownButtonContainer" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="!DropdownCenter.Height" HorizontalAlignment="Center" VerticalAlignment="Center">
+              <Children>
+                <ButtonWidget Id="DropdownButton" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" DoNotPassEventsToChildren="true" Brush="!DropdownCenterBrush" IsEnabled="*IsEnabled">
+                  <Children>
+                    <ScrollingRichTextWidget Id="SelectedTextWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="7" MarginRight="7" PositionYOffset="1" Brush="!DropdownCenterTextBrush" IsAutoScrolling="false"  ScrollOnHoverWidget="..\..\DropdownButton"/>
+                    <!-- Add HintWidget compared with official dropdown -->
+                    <HintWidget DataSource="{..\Description}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                  </Children>
+                </ButtonWidget>
+              </Children>
+            </Widget>
+
+            <!--Dropdown Visual-->
+            <Widget Id="DropdownClipWidget" WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" ClipContents="true" WidgetToCopyHeightFrom="DropdownContainerWidget\ScrollablePanel">
+              <Children>
+
+                <BrushWidget Id="DropdownContainerWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" VerticalAlignment="Bottom" SuggestedWidth="!Extension.Width" SuggestedHeight="380" HorizontalAlignment="Center" Brush="!DropdownListBackgroundBrush">
+                  <Children>
+
+                    <ScrollablePanel Id="ScrollablePanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" AutoHideScrollBars="true" ClipRect="ClipRect" MarginBottom="20" VerticalAlignment="Bottom" InnerPanel="ClipRect\PrimaryUsageSelectorList" MaxHeight="355" VerticalScrollbar="..\VerticalScrollbar">
+                      <Children>
+                        <Widget Id="ClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" ClipContents="true" MaxHeight="355">
+                          <Children>
+
+                            <ListPanel Id="PrimaryUsageSelectorList" DataSource="{ItemList}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop">
+                              <ItemTemplate>
+                                <ButtonWidget Id="DropdownItemButton" DoNotUseCustomScale="true" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="29" MarginLeft="10" MarginRight="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" ButtonType="Radio" UpdateChildrenStates="true" IsEnabled="@CanBeSelected" Brush="Standard.DropdownItem.SoundBrush">
+                                  <Children>
+                                    <ImageWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="5" MarginRight="5" Brush="!ItemBrush" />
+                                    <ScrollingRichTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" MarginLeft="7" MarginRight="7" VerticalAlignment="Center" Brush="!ItemTextBrush" Text="@StringItem" IsAutoScrolling="false" ScrollOnHoverWidget="..\..\DropdownItemButton" />
+                                    <HintWidget DataSource="{Hint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                                  </Children>
+                                </ButtonWidget>
+                              </ItemTemplate>
+                            </ListPanel>
+                          </Children>
+                        </Widget>
+
+                      </Children>
+                    </ScrollablePanel>
+
+                    <ScrollbarWidget Id="VerticalScrollbar" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="8" HorizontalAlignment="Right" VerticalAlignment="Center" MarginTop="15" MarginBottom="15" AlignmentAxis="Vertical" Handle="VerticalScrollbarHandle" IsVisible="false" MaxValue="100" MinValue="0">
+                      <Children>
+                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="4" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" AlphaFactor="0.2" Color="#5A4033FF" />
+                        <ImageWidget Id="VerticalScrollbarHandle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="8" SuggestedHeight="10" HorizontalAlignment="Center" Brush="FaceGen.Scrollbar.Handle" />
+                      </Children>
+                    </ScrollbarWidget>
+
+                  </Children>
+                </BrushWidget>
+              </Children>
+            </Widget>
+
+          </Children>
+        </AnimatedDropdownWidget>
+
+        <!--Next Button-->
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="43" VerticalAlignment="Center" DoNotAcceptEvents="true" IsVisible="*ShowNextAndPrevious">
+          <Children>
+            <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="60" SuggestedHeight="70" VerticalAlignment="Center" HorizontalAlignment="Center" Command.Click="ExecuteSelectNextItem" Brush="!NextButtonBrush" IsEnabled="*IsEnabled"/>
+          </Children>
+        </Widget>
+
+      </Children>
+    </ListPanel>
+  </Window>
+</Prefab>

@@ -113,7 +113,7 @@ namespace RTSCamera.CampaignGame.Behavior
                 if (mainPartySiegedSettlement != null 
                     && mainPartySiegedSettlement.SiegeEvent != null
                     && mainPartySiegedSettlement.SiegeEvent.BesiegerCamp != null 
-                    && mainPartySiegedSettlement.SiegeEvent.BesiegerCamp.BesiegerParty == MobileParty.MainParty)
+                    && mainPartySiegedSettlement.SiegeEvent.BesiegerCamp.LeaderParty == MobileParty.MainParty)
                 {
                     Settlement settlement = PlayerEncounter.EncounteredParty != null ? PlayerEncounter.EncounteredParty.Settlement : PlayerSiege.PlayerSiegeEvent.BesiegedSettlement;
                     if (PlayerSiege.PlayerSide == BattleSideEnum.Attacker && !settlement.SiegeEvent.BesiegerCamp.IsPreparationComplete)
