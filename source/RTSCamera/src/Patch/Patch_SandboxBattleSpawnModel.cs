@@ -20,6 +20,7 @@ namespace RTSCamera.Patch
             {
                 if (_patched)
                     return false;
+
                 _patched = true;
 
                 Harmony.Patch(
@@ -46,6 +47,7 @@ namespace RTSCamera.Patch
                     var character = origin.Troop as CharacterObject;
                     if (character == null)
                         return true;
+
                     typeof(BasicCharacterObject).GetProperty(nameof(BasicCharacterObject.DefaultFormationClass))
                         .GetSetMethod(true).Invoke(origin.Troop, new object[] { character.GetFormationClass() });
                 }
