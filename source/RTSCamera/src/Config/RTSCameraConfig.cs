@@ -9,13 +9,6 @@ using TaleWorlds.MountAndBlade;
 
 namespace RTSCamera.Config
 {
-    public enum AutoSetPlayerFormation
-    {
-        Never,
-        DeploymentStage,
-        Always,
-        Count
-    }
     public class RTSCameraConfig : RTSCameraConfigBase<RTSCameraConfig>
     {
         protected static Version BinaryVersion => new Version(1, 7);
@@ -42,13 +35,6 @@ namespace RTSCamera.Config
                 case "1.5":
                     CameraDistanceLimitFactor = 1;
                     CameraHeightFollowsTerrain = false;
-                    goto case "1.6";
-                case "1.6":
-                    if (AlwaysSetPlayerFormation)
-                    {
-                        AutoSetPlayerFormation = AutoSetPlayerFormation.DeploymentStage;
-                    }
-
                     if (PreferToControlCompanions)
                     {
                         PreferUnitsInSameFormation = false;
@@ -77,11 +63,6 @@ namespace RTSCamera.Config
         }
 
         public FormationClass PlayerFormation = FormationClass.General;
-
-        // Use AutoSetPlayerFormation instead
-        public bool AlwaysSetPlayerFormation;
-
-        public AutoSetPlayerFormation AutoSetPlayerFormation = AutoSetPlayerFormation.Never;
 
         public bool ConstantSpeed;
 
@@ -138,8 +119,6 @@ namespace RTSCamera.Config
             RaisedHeight = other.RaisedHeight;
             PlayerControllerInFreeCamera = other.PlayerControllerInFreeCamera;
             PlayerFormation = other.PlayerFormation;
-            AlwaysSetPlayerFormation = other.AlwaysSetPlayerFormation;
-            AutoSetPlayerFormation = other.AutoSetPlayerFormation;
             ConstantSpeed = other.ConstantSpeed;
             CameraHeightFollowsTerrain = other.CameraHeightFollowsTerrain;
             IgnoreTerrain = other.IgnoreTerrain;
