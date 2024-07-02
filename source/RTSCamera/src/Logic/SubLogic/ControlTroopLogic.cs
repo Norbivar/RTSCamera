@@ -94,6 +94,7 @@ namespace RTSCamera.Logic.SubLogic
                     bool shouldSmoothMoveToAgent = Utility.BeforeSetMainAgent();
                     if (_switchFreeCameraLogic.IsSpectatorCamera)
                     {
+                        agent.GetTargetAgent();
                         if (Mission.MainAgent != agent)
                             Mission.MainAgent = agent;
 

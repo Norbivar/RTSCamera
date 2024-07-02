@@ -3,6 +3,7 @@ using MissionLibrary.Extension;
 using MissionSharedLibrary.Controller;
 using RTSCamera.Logic;
 using RTSCamera.View;
+using RTSCameraAgentComponent;
 using System.Collections.Generic;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View.MissionViews;
@@ -37,6 +38,9 @@ namespace RTSCamera.MissionStartingHandler
                     MissionStartingManager.AddMissionBehavior(entranceView, missionBehavior);
                 }
             }
+
+            MissionStartingManager.AddMissionBehavior(entranceView, new RTSCameraComponent.ComponentAdder());
+            MissionStartingManager.AddMissionBehavior(entranceView, new RTSCameraRangedTargetComponent.ComponentAdder());
         }
 
         public override void OnPreMissionTick(MissionView entranceView, float dt)

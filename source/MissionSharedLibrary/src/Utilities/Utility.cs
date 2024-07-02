@@ -614,7 +614,8 @@ namespace MissionSharedLibrary.Utilities
             }
         }
 
-        public static void DisplayChargeToFormationMessage(MBReadOnlyList<Formation> selectedFormations,
+        public static void DisplayChargeToFormationMessage(
+            IEnumerable<Formation> selectedFormations,
             Formation targetFormation)
         {
             // From MissionOrderVM.OnOrder
@@ -633,6 +634,27 @@ namespace MissionSharedLibrary.Utilities
                             nameof(BehaviorTacticalCharge))
                         .SetTextVariable("AI_SIDE", GameTexts.FindText("str_formation_ai_side_strings", targetFormation.AI.Side.ToString()))
                         .SetTextVariable("CLASS", GameTexts.FindText("str_troop_group_name", ((int)targetFormation.FormationIndex).ToString())));
+
+                InformationManager.DisplayMessage(new InformationMessage(message.ToString()));
+            }
+        }
+        public static void DisplayShootAtFormationMessage(
+            IEnumerable<Formation> selectedFormations,
+            Formation targetFormation)
+        {
+            // From MissionOrderVM.OnOrder
+            var formationNames = new List<TextObject>();
+            foreach (var formation in selectedFormations)
+            {
+                formationNames.Add(GameTexts.FindText("str_formation_class_string", formation.LogicalClass.GetName()));
+            }
+
+            if (!formationNames.IsEmpty())
+            {
+                var message = new TextObject("{=ApD0xQXT}{STR1}: shooting at {STR2}");
+                message.SetTextVariable("STR1", GameTexts.GameTextHelper.MergeTextObjectsWithComma(formationNames, false));
+                message.SetTextVariable("STR2", GameTexts.FindText("str_troop_group_name", ((int)targetFormation.FormationIndex).ToString()));
+
 
                 InformationManager.DisplayMessage(new InformationMessage(message.ToString()));
             }

@@ -48,11 +48,8 @@ Credits where credit due: the original author and creator of RTSCamera: Izh
 links：
 Nexusmods: https://www.nexusmods.com/mountandblade2bannerlord/mods/355
 mountandblade.com.cn: https://bbs.mountblade.com.cn/thread-2061243-1-1.html"/>
-    <ChangeNotes Value="Migrated the following functionalities from CommandModule:
-    - Removed 'Auto Set Player Formation'
-    - Changed behaviour of 'Player Formation' ==> The setting will now be remembered and will always set the player character to the specified formation. Set 'Unset' to not set to default (based on mount, weapons, etc...)
-    - Fixed middle mouse button 'Charge Formation' command
-    - 1.2.10 compatiblity" />
+    <ChangeNotes Value="
+    - Proper version number change" />
     <!-- Insert patch notes -->
     <Tags>
       <!-- You can use the following tags: -->

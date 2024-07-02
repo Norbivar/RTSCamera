@@ -23,7 +23,6 @@
     <string id="RTSCamera_slow_motion_factor_hint" text="The factor of time speed." />
     <string id="RTSCamera_player_controller_in_free_camera_hint" text="Player control mode in Free Camera. If set to none, player character will not be controlled. If set to AI, AI will control player character. If set to Player, you can still directly control your character." />
     <string id="RTSCamera_player_formation_hint" text="Assign player to the selected formation." />
-    <string id="RTSCamera_auto_set_player_formation_hint" text="When to automatically set player to the specified formation." />
     <string id="RTSCamera_watch_another_hero_hint" text="Watch the hero you selected." />
     <string id="RTSCamera_select_character_hint" text="Select a character using mouse, then you can focus the camera to it or control it." />
     <string id="RTSCamera_control_ally_after_death_hint" text="Automatically control one of your ally after you die and continue fighting." />
@@ -77,11 +76,7 @@
     <string id="RTSCamera_controller_type_AI" text="AI" />
     <string id="RTSCamera_controller_type_player" text="Player" />
     <string id="RTSCamera_playerformation" text="Player Formation" />
-    <string id="RTSCamera_player_formation_unset" text="Unset" />
-    <string id="RTSCamera_auto_set_player_formation" text="Auto Set Player Formation" />
-    <string id="RTSCamera_auto_set_player_formation_never" text="Never" />
-    <string id="RTSCamera_auto_set_player_formation_deployment_stage" text="Deployment Stage" />
-    <string id="RTSCamera_auto_set_player_formation_always" text="Always" />
+    <string id="RTSCamera_player_formation_unset" text="Unset" />>
     <string id="RTSCamera_watchanotherhero" text="Watch Another Hero" />
     <string id="RTSCamera_select_character" text="Select Character" />
     <string id="RTSCamera_controlallyafterdeath" text="Control Ally After Death" />

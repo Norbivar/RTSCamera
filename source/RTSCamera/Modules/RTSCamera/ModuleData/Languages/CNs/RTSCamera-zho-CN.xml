@@ -23,7 +23,6 @@
     <string id="RTSCamera_slow_motion_factor_hint" text="时间流逝速度倍率。" />
     <string id="RTSCamera_player_controller_in_free_camera_hint" text="自由视角中玩家角色的控制模式。如果设为无，你的角色不会被控制。如果设为AI，你的角色会被AI控制。如果设为玩家，你仍然可以直接控制你的角色。" />
     <string id="RTSCamera_player_formation_hint" text="将玩家分配到指定的编队。" />
-    <string id="RTSCamera_auto_set_player_formation_hint" text="何时自动将玩家分配到指定编队。" />
     <string id="RTSCamera_watch_another_hero_hint" text="观察一个你选择的英雄。" />
     <string id="RTSCamera_select_character_hint" text="用鼠标选择一个角色，然后你可以将相机对准它或者控制它。" />
     <string id="RTSCamera_control_ally_after_death_hint" text="阵亡后自动控制你的一个队友来继续战斗。" />
@@ -76,10 +75,6 @@
     <string id="RTSCamera_controller_type_player" text="玩家" />
     <string id="RTSCamera_playerformation" text="玩家编队" />
     <string id="RTSCamera_player_formation_unset" text="未设定" />
-    <string id="RTSCamera_auto_set_player_formation" text="自动设置玩家编队" />
-    <string id="RTSCamera_auto_set_player_formation_never" text="从不" />
-    <string id="RTSCamera_auto_set_player_formation_deployment_stage" text="部署阶段" />
-    <string id="RTSCamera_auto_set_player_formation_always" text="总是" />
     <string id="RTSCamera_watchanotherhero" text="观察另一个英雄单位" />
     <string id="RTSCamera_select_character" text="选择角色" />
     <string id="RTSCamera_controlallyafterdeath" text="阵亡后控制队友" />
