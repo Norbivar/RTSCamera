@@ -1,7 +1,7 @@
 ﻿using MissionSharedLibrary.Utilities;
+using RTSCamera.ActorComponents;
 using RTSCamera.Config;
 using RTSCamera.Logic;
-using RTSCameraAgentComponent;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -100,7 +100,7 @@ namespace RTSCamera
                     {
                         if (group.Key != additionalFormationToUpdate)
                         {
-                            group.Key?.ApplyActionOnEachUnit(a => a.GetComponent<RTSCameraComponent>()?.UpdateContour());
+                            group.Key?.ApplyActionOnEachUnit(a => a.GetComponent<ColouredOutlineComponent>()?.UpdateContour());
                         }
                     }
                 }
@@ -108,7 +108,7 @@ namespace RTSCamera
                 if (additionalFormationToUpdate != null)
                 {
                     _temporarilyUpdatedFormations.RemoveAll(f => f == additionalFormationToUpdate);
-                    additionalFormationToUpdate.ApplyActionOnEachUnit(a => a.GetComponent<RTSCameraComponent>()?.UpdateContour());
+                    additionalFormationToUpdate.ApplyActionOnEachUnit(a => a.GetComponent<ColouredOutlineComponent>()?.UpdateContour());
                 }
             }
             catch (Exception e)
@@ -150,7 +150,7 @@ namespace RTSCamera
         public  void OnAgentFleeing(Agent affectedAgent)
         {
             ClearAgentFormationContour(affectedAgent);
-            affectedAgent.GetComponent<RTSCameraComponent>()?.UpdateContour();
+            affectedAgent.GetComponent<ColouredOutlineComponent>()?.UpdateContour();
         }
 
         public void MouseOver(Formation formation)
@@ -336,6 +336,7 @@ namespace RTSCamera
 
             if (_mouseOverFormation == null)
                 return;
+
             ClearFormationAllContour(_mouseOverFormation);
             _mouseOverFormation = null;
         }
@@ -383,6 +384,7 @@ namespace RTSCamera
                 _enemyAsTargetFormations.Add(formation);
             else
                 _allyAsTargetFormations.Add(formation);
+
             _actionQueue.Enqueue(() =>
             {
                 formation.ApplyActionOnEachUnit(agent => SetAgentAsTargetContour(agent, isEnemy));
@@ -393,6 +395,7 @@ namespace RTSCamera
         {
             if (!isEnemy)
                 _allySelectedFormations.Add(formation);
+
             if (HighlightEnabledForSelectedFormation)
                 _actionQueue.Enqueue(() =>
                 {
@@ -402,19 +405,19 @@ namespace RTSCamera
 
         private void SetAgentMouseOverContour(Agent agent, bool enemy)
         {
-            agent.GetComponent<RTSCameraComponent>()?.SetContourColor((int)ColorLevel.MouseOverFormation,
+            agent.GetComponent<ColouredOutlineComponent>()?.SetContourColor((int)ColorLevel.MouseOverFormation,
                 enemy ? _mouseOverEnemyColor : _mouseOverAllyColor, true, false);
         }
 
         private void SetAgentAsTargetContour(Agent agent, bool enemy)
         {
-            agent.GetComponent<RTSCameraComponent>()?.SetContourColor((int)ColorLevel.TargetFormation,
+            agent.GetComponent<ColouredOutlineComponent>()?.SetContourColor((int)ColorLevel.TargetFormation,
                 enemy ? _enemyTargetColor : _allyTargetColor, true, false);
         }
 
         private void SetAgentSelectedContour(Agent agent, bool enemy)
         {
-            agent.GetComponent<RTSCameraComponent>()?.SetContourColor((int)ColorLevel.SelectedFormation,
+            agent.GetComponent<ColouredOutlineComponent>()?.SetContourColor((int)ColorLevel.SelectedFormation,
                 enemy ? _enemySelectedColor : _allySelectedColor, true, false);
         }
 
@@ -429,7 +432,7 @@ namespace RTSCamera
             _actionQueue.Enqueue(() =>
             {
                 formation.ApplyActionOnEachUnit(agent =>
-                    agent.GetComponent<RTSCameraComponent>()?.ClearTargetOrSelectedFormationColor());
+                    agent.GetComponent<ColouredOutlineComponent>()?.ClearTargetOrSelectedFormationColor());
                 _temporarilyUpdatedFormations.Add(formation);
             });
         }
@@ -439,7 +442,7 @@ namespace RTSCamera
             _actionQueue.Enqueue(() =>
             {
                 formation.ApplyActionOnEachUnit(agent =>
-                    agent.GetComponent<RTSCameraComponent>()?.SetContourColor((int)level, null, true, false));
+                    agent.GetComponent<ColouredOutlineComponent>()?.SetContourColor((int)level, null, true, false));
                 _temporarilyUpdatedFormations.Add(formation);
             });
         }
@@ -455,7 +458,7 @@ namespace RTSCamera
 
         private static void ClearAgentFormationContour(Agent agent)
         {
-            agent.GetComponent<RTSCameraComponent>()?.ClearFormationColor();
+            agent.GetComponent<ColouredOutlineComponent>()?.ClearFormationColor();
         }
     }
 }

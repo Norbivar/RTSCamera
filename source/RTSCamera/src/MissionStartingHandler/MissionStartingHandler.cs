@@ -1,6 +1,7 @@
 ﻿using MissionLibrary.Controller;
 using MissionLibrary.Extension;
 using MissionSharedLibrary.Controller;
+using RTSCamera.ActorComponents;
 using RTSCamera.Logic;
 using RTSCamera.View;
 using RTSCameraAgentComponent;
@@ -39,7 +40,7 @@ namespace RTSCamera.MissionStartingHandler
                 }
             }
 
-            MissionStartingManager.AddMissionBehavior(entranceView, new RTSCameraComponent.ComponentAdder());
+            MissionStartingManager.AddMissionBehavior(entranceView, new ColouredOutlineComponent.ComponentAdder());
             MissionStartingManager.AddMissionBehavior(entranceView, new RTSCameraRangedTargetComponent.ComponentAdder());
         }
 

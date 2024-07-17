@@ -162,10 +162,6 @@ namespace RTSCamera
 
             RTSCameraGameKeyCategory.RegisterGameKeyCategory();
 
-            //Global.RegisterProvider(
-            //    VersionProviderCreator.Create(() => new RTSCameraAgentComponent.MissionStartingHandler(),
-            //        new Version(1, 0, 0)), "RTSCameraAgentComponent.MissionStartingHandler");
-
             Global.GetProvider<AMissionStartingManager>().AddHandler(new MissionStartingHandler.MissionStartingHandler());
 
             var menuClassCollection = AMenuManager.Get().MenuClassCollection;

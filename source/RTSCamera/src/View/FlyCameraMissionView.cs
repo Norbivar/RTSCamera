@@ -336,6 +336,7 @@ namespace RTSCamera.View
             cameraFrame.rotation.RotateAboutSide(CameraElevation);
             if (!MissionScreen.IsPhotoModeEnabled)
                 cameraFrame.rotation.RotateAboutSide((float?)CameraAddedElevation?.GetValue(MissionScreen) ?? 0f);
+
             cameraFrame.origin = CameraPosition;
             float heightFactorForHorizontalMove;
             float heightFactorForVerticalMove;
