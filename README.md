@@ -3,6 +3,11 @@
 
 A mod for Mount&Blade II Bannerlord that provides free camera and more features in battle.
 
+## Dependencies
+You will need these modules to enable RTS Camera:
+- Harmony
+- UIExtenderEx
+
 ## Save Compability
 This mod does not read or write stuffs to your game save. Installing or removing this mod has no impact on your game save.
 
@@ -10,9 +15,7 @@ This mod does not read or write stuffs to your game save. Installing or removing
 
 - RTS Camera
 
-  - Free camera mode switchable at any time. The camera distance to your character is limited by the tactics and scouting skill level.
-
-  - ~~Clickable troop cards.~~
+  - Free camera mode switchable at any time.
 
   - Control one of your soldiers and continue fighting/commanding after player character is injured in battle.
 
