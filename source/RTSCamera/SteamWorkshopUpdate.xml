@@ -49,7 +49,8 @@ links：
 Nexusmods: https://www.nexusmods.com/mountandblade2bannerlord/mods/355
 mountandblade.com.cn: https://bbs.mountblade.com.cn/thread-2061243-1-1.html"/>
     <ChangeNotes Value="
-    - Proper version number change" />
+    - Hopefully this won't crash on new campaign
+    - Option to auto-toggle speed dilation on entering RTS view" />
     <!-- Insert patch notes -->
     <Tags>
       <!-- You can use the following tags: -->
@@ -60,7 +61,7 @@ mountandblade.com.cn: https://bbs.mountblade.com.cn/thread-2061243-1-1.html"/>
       <Tag Value="UI"/>
       <Tag Value="AI"/>
       <Tag Value="Singleplayer"/>
-      <Tag Value="v1.2.10" />
+      <Tag Value="v1.2.12" />
       <Tag Value="v1.2.x" />
     </Tags>
   </UpdateItem>

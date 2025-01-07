@@ -89,6 +89,9 @@
   <string id="str_rts_camera_toggle_pause" text="{=RTSCamera_togglepause}Toggle Pause" />
   <string id="str_rts_camera_slow_motion_mode" text="{=RTSCamera_slowmotionmode}'Slow' Motion Mode" />
   <string id="str_rts_camera_slow_motion_factor" text="{=RTSCamera_slowmotionfactor}'Slow' Motion Factor" />
+  <string id="str_rts_camera_slow_motion_on_rts_view" text="{=RTSCamera_slow_motion_on_rts_view}Toggle 'Slow' Motion on RTS View" />
+  <string id="str_rts_camera_slow_motion_on_rts_view_hint" text="{=RTSCamera_slow_motion_on_rts_view_hint}If toggled, the 'slow' motion will be applied automatically upon entering RTS view and removed when leaving it." />
+  <string id="str_rts_camera_slow_motion_on_rts_view_warning" text="{=RTSCamera_slow_motion_on_rts_view_waring}WARNING: Your slow motion factor is set to a value more than 1.0. This will make the game speed up when 'Slow' motion is toggled on, which might be disorienting in RTS view." />
 
   <string id="str_rts_camera_unbalanced_options_description" text="{=RTSCamera_unbalancedoptionsdescription}Cheat Options" />
   <string id="str_rts_camera_all_invulnerable" text="{=RTSCamera_disabledeath}All Invulnerable" />

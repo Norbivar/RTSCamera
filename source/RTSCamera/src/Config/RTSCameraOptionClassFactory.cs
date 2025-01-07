@@ -13,6 +13,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Engine.GauntletUI;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View.MissionViews;
@@ -172,7 +173,7 @@ namespace RTSCamera.Config
                             }
                         }, () =>
                         {
-                            return (int) RTSCameraConfig.Get().PlayerFormation;
+                            return (int)RTSCameraConfig.Get().PlayerFormation;
                         },
                         (int)FormationClass.NumberOfRegularFormations, new[]
                         {
@@ -241,6 +242,25 @@ namespace RTSCamera.Config
                     GameTexts.FindText("str_rts_camera_slow_motion_factor_hint"),
                     () => RTSCameraConfig.Get().SlowMotionFactor,
                     f => rtsCameraLogic.MissionSpeedLogic.SetSlowMotionFactor(f), 0, 3, false, true));
+                miscellaneousOptionCategory.AddOption(new BoolOptionViewModel(
+                    GameTexts.FindText("str_rts_camera_slow_motion_on_rts_view"),
+                    GameTexts.FindText("str_rts_camera_slow_motion_on_rts_view_hint"),
+                    () => RTSCameraConfig.Get().SlowMotionModeOnRTSView,
+                    b =>
+                    {
+                        if (b && RTSCameraConfig.Get().SlowMotionFactor > 1.0)
+                        {
+                            InformationManager.ShowInquiry(new InquiryData
+                            ( 
+                                "Warning",
+                                GameTexts.FindText("str_rts_camera_slow_motion_on_rts_view_warning").ToString(),
+                                true, false, null, null, null, null
+                            ));
+                        }
+
+                        RTSCameraConfig.Get().SlowMotionModeOnRTSView = b;
+                    }));
+
                 miscellaneousOptionCategory.AddOption(new BoolOptionViewModel(
                     GameTexts.FindText("str_rts_camera_display_mod_message"),
                     GameTexts.FindText("str_rts_camera_display_message_hint"),

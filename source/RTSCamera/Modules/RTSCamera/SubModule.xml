@@ -2,15 +2,15 @@
 <Module>
   <Name value="RTS Camera"/>
   <Id value="RTSCamera"/>
-  <Version value="v4.1.32"/>
+  <Version value="v4.1.33"/>
   <SingleplayerModule value="true"/>
   <MultiplayerModule value="false"/>
   <DependedModules>
-    <DependedModule Id="Native" DependentVersion="v1.2.10" />
-    <DependedModule Id="SandBoxCore" DependentVersion="v1.2.10" />
-    <DependedModule Id="Sandbox" DependentVersion="v1.2.10" />
-    <DependedModule Id="CustomBattle" DependentVersion="v1.2.10"/>
-    <DependedModule Id="StoryMode" DependentVersion="v1.2.10" />
+    <DependedModule Id="Native" DependentVersion="v1.2.12" />
+    <DependedModule Id="SandBoxCore" DependentVersion="v1.2.12" />
+    <DependedModule Id="Sandbox" DependentVersion="v1.2.12" />
+    <DependedModule Id="CustomBattle" DependentVersion="v1.2.12"/>
+    <DependedModule Id="StoryMode" DependentVersion="v1.2.12" />
 	<DependedModule Id="Bannerlord.Harmony" DependentVersion="v2.3.3" />
     <DependedModule Id="Bannerlord.UIExtenderEx" DependentVersion="v2.11.0" />
   </DependedModules>

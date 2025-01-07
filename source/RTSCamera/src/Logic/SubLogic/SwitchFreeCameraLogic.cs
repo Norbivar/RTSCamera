@@ -54,7 +54,8 @@ namespace RTSCamera.Logic.SubLogic
             _controlTroopLogic = _logic.ControlTroopLogic;
 
             Mission.OnMainAgentChanged += OnMainAgentChanged;
-        }
+            MissionLibrary.Event.MissionEvent.ToggleFreeCamera += ToggleAutomaticSlowMotionMode;
+		}
 
         public void AfterAddTeam(Team team)
         {
@@ -64,7 +65,8 @@ namespace RTSCamera.Logic.SubLogic
         public void OnRemoveBehaviour()
         {
             Mission.OnMainAgentChanged -= OnMainAgentChanged;
-            WatchBattleBehavior.WatchMode = false;
+			MissionLibrary.Event.MissionEvent.ToggleFreeCamera -= ToggleAutomaticSlowMotionMode;
+			WatchBattleBehavior.WatchMode = false;
         }
 
         public void OnTeamDeployed(Team team)
@@ -314,5 +316,17 @@ namespace RTSCamera.Logic.SubLogic
             MissionLibrary.Event.MissionEvent.OnToggleFreeCamera(true);
             Utility.DisplayLocalizedText("str_rts_camera_switch_to_free_camera");
         }
+
+        private void ToggleAutomaticSlowMotionMode(bool enable)
+        {
+			if (RTSCameraConfig.Get().SlowMotionModeOnRTSView)
+			{
+				var rtsCameraLogic = Mission.Current.GetMissionBehavior<RTSCameraLogic>();
+				if (rtsCameraLogic != null)
+				{
+					rtsCameraLogic.MissionSpeedLogic.SetSlowMotionModeAutomatic(enable);
+				}
+			}
+		}
     }
 }

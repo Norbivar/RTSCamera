@@ -73,8 +73,8 @@ namespace RTSCamera.Config
         public bool IgnoreBoundaries;
 
         public bool SlowMotionMode;
-
         public float SlowMotionFactor = 0.2f;
+        public bool SlowMotionModeOnRTSView = false;
 
         public bool DisplayMessage = true;
 
@@ -125,6 +125,7 @@ namespace RTSCamera.Config
             IgnoreBoundaries = other.IgnoreBoundaries;
             SlowMotionMode = other.SlowMotionMode;
             SlowMotionFactor = other.SlowMotionFactor;
+            SlowMotionModeOnRTSView = other.SlowMotionModeOnRTSView;
             DisplayMessage = other.DisplayMessage;
             ControlAllyAfterDeath = other.ControlAllyAfterDeath;
             IgnoreRetreatingTroops = other.IgnoreRetreatingTroops;

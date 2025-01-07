@@ -20,6 +20,7 @@ namespace MissionSharedLibrary.Utilities
     public static class Utility
     {
         public static string ModuleId;
+        public static bool IsAutomaticSpeedDilationActive = false;
 
         public static WorldPosition GetOrderPosition(Formation formation)
         {
